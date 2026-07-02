@@ -1,0 +1,310 @@
+/*==================================================
+    AI Loan Approval Risk Prediction System
+==================================================*/
+
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --border:#dbe4f0;
+    --white:#ffffff;
+    --shadow:0 12px 35px rgba(15,23,42,.10);
+    --radius:18px;
+}
+
+/*==================================================
+    Background
+==================================================*/
+
+body{
+    min-height:100vh;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+    color:var(--text);
+
+    background:
+        radial-gradient(circle at top left,#dbeafe 0%,transparent 40%),
+        radial-gradient(circle at bottom right,#bfdbfe 0%,transparent 40%),
+        linear-gradient(135deg,#f8fbff,#eef5ff,#dbeafe);
+
+    background-attachment:fixed;
+}
+
+/*==================================================
+    Layout
+==================================================*/
+
+.container{
+    max-width:1150px;
+}
+
+/*==================================================
+    Main Card
+==================================================*/
+
+.card{
+    border:none;
+    border-radius:var(--radius);
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(12px);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    transition:.35s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+}
+
+/*==================================================
+    Header
+==================================================*/
+
+.card-header{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    padding:30px;
+    border:none;
+}
+
+.card-header h2{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.card-header p{
+    margin:0;
+    opacity:.9;
+}
+
+/*==================================================
+    Body
+==================================================*/
+
+.card-body{
+    padding:35px;
+}
+
+/*==================================================
+    Labels
+==================================================*/
+
+.form-label{
+    font-weight:600;
+    color:#374151;
+    margin-bottom:8px;
+}
+
+/*==================================================
+    Inputs
+==================================================*/
+
+.form-control,
+.form-select{
+
+    border-radius:12px;
+    border:1px solid var(--border);
+
+    min-height:52px;
+
+    transition:all .3s ease;
+
+    font-size:15px;
+}
+
+.form-control:hover,
+.form-select:hover{
+    border-color:#93c5fd;
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/*==================================================
+    Buttons
+==================================================*/
+
+.btn-primary{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px 42px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    letter-spacing:.3px;
+
+    transition:.3s;
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
+
+    background:linear-gradient(135deg,#1d4ed8,#1e40af);
+
+}
+
+.btn-primary:active{
+    transform:scale(.98);
+}
+
+/*==================================================
+    Loading
+==================================================*/
+
+#loading{
+    padding:30px;
+}
+
+.spinner-border{
+    width:3.2rem;
+    height:3.2rem;
+    color:var(--primary);
+}
+
+/*==================================================
+    Prediction Result
+==================================================*/
+
+#result .card{
+
+    border-left:6px solid var(--success);
+
+    background:linear-gradient(145deg,#ffffff,#f0fff5);
+
+    animation:fadeUp .45s ease;
+}
+
+#result h3{
+
+    color:var(--success);
+
+    font-weight:700;
+
+    margin-bottom:18px;
+}
+
+#result p{
+
+    font-size:16px;
+
+    margin-bottom:12px;
+
+    color:#374151;
+}
+
+#result strong{
+    color:#111827;
+}
+
+/*==================================================
+    Badge
+==================================================*/
+
+.badge{
+
+    font-size:14px;
+
+    padding:9px 15px;
+
+    border-radius:50px;
+
+    font-weight:600;
+}
+
+/*==================================================
+    Alerts
+==================================================*/
+
+.alert{
+
+    border:none;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+/*==================================================
+    Footer
+==================================================*/
+
+footer{
+
+    text-align:center;
+
+    margin:40px 0 20px;
+
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+/*==================================================
+    Animation
+==================================================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==================================================
+    Responsive
+==================================================*/
+
+@media(max-width:768px){
+
+    .card-header{
+        padding:24px;
+        text-align:center;
+    }
+
+    .card-header h2{
+        font-size:1.6rem;
+    }
+
+    .card-body{
+        padding:22px;
+    }
+
+    .btn-primary{
+        width:100%;
+    }
+
+}

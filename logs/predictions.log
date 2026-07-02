@@ -1,0 +1,145 @@
+2026-07-02 17:52:50,393 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.8:5000
+2026-07-02 17:52:50,393 | [33mPress CTRL+C to quit[0m
+2026-07-02 17:52:50,395 |  * Restarting with stat
+2026-07-02 17:52:52,441 |  * Debugger is active!
+2026-07-02 17:52:52,441 |  * Debugger PIN: 133-755-157
+2026-07-02 17:53:18,372 | 127.0.0.1 - - [02/Jul/2026 17:53:18] "GET / HTTP/1.1" 200 -
+2026-07-02 17:53:18,600 | 127.0.0.1 - - [02/Jul/2026 17:53:18] "GET /static/script.js HTTP/1.1" 200 -
+2026-07-02 17:53:18,600 | 127.0.0.1 - - [02/Jul/2026 17:53:18] "GET /static/style.css HTTP/1.1" 200 -
+2026-07-02 17:53:18,661 | 127.0.0.1 - - [02/Jul/2026 17:53:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-02 17:54:13,789 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:54:13,798 | LoanID=1234567 | Approved=True | Probability=0.7091 | Confidence=0.7091
+2026-07-02 17:54:13,799 | 127.0.0.1 - - [02/Jul/2026 17:54:13] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:54:21,684 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:54:21,693 | LoanID=1234567 | Approved=False | Probability=0.0186 | Confidence=0.9814
+2026-07-02 17:54:21,693 | 127.0.0.1 - - [02/Jul/2026 17:54:21] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:54:33,419 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:54:33,436 | LoanID=1234567 | Approved=False | Probability=0.0270 | Confidence=0.9730
+2026-07-02 17:54:33,436 | 127.0.0.1 - - [02/Jul/2026 17:54:33] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:54:53,696 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:54:53,704 | LoanID=1234567 | Approved=False | Probability=0.0205 | Confidence=0.9795
+2026-07-02 17:54:53,704 | 127.0.0.1 - - [02/Jul/2026 17:54:53] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:55:16,136 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:55:16,141 | LoanID=1234567 | Approved=False | Probability=0.0205 | Confidence=0.9795
+2026-07-02 17:55:16,141 | 127.0.0.1 - - [02/Jul/2026 17:55:16] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:55:50,035 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:55:50,053 | LoanID=1234567 | Approved=False | Probability=0.4922 | Confidence=0.5078
+2026-07-02 17:55:50,055 | 127.0.0.1 - - [02/Jul/2026 17:55:50] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:55:53,800 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:55:53,800 | LoanID=1234567 | Approved=False | Probability=0.4812 | Confidence=0.5188
+2026-07-02 17:55:53,800 | 127.0.0.1 - - [02/Jul/2026 17:55:53] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:55:59,706 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:55:59,748 | LoanID=1234567 | Approved=True | Probability=0.5001 | Confidence=0.5001
+2026-07-02 17:55:59,748 | 127.0.0.1 - - [02/Jul/2026 17:55:59] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:56:06,299 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:56:06,299 | LoanID=1234567 | Approved=True | Probability=0.5001 | Confidence=0.5001
+2026-07-02 17:56:06,299 | 127.0.0.1 - - [02/Jul/2026 17:56:06] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:56:16,878 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:56:16,885 | LoanID=1234567 | Approved=False | Probability=0.4184 | Confidence=0.5816
+2026-07-02 17:56:16,885 | 127.0.0.1 - - [02/Jul/2026 17:56:16] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:56:19,635 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:56:19,653 | LoanID=1234567 | Approved=False | Probability=0.4330 | Confidence=0.5670
+2026-07-02 17:56:19,653 | 127.0.0.1 - - [02/Jul/2026 17:56:19] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:56:22,380 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:56:22,565 | LoanID=1234567 | Approved=True | Probability=0.5001 | Confidence=0.5001
+2026-07-02 17:56:22,575 | 127.0.0.1 - - [02/Jul/2026 17:56:22] "POST /predict HTTP/1.1" 200 -
+2026-07-02 17:56:26,995 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 17:56:27,016 | LoanID=1234567 | Approved=False | Probability=0.4184 | Confidence=0.5816
+2026-07-02 17:56:27,024 | 127.0.0.1 - - [02/Jul/2026 17:56:27] "POST /predict HTTP/1.1" 200 -
+2026-07-02 18:16:58,311 |  * Detected change in 'D:\\2nd Sem\\SE4ML\\Assignment 1\\LoanApprovalPrediction\\src\\app.py', reloading
+2026-07-02 18:16:58,564 |  * Restarting with stat
+2026-07-02 18:18:06,574 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.8:5000
+2026-07-02 18:18:06,574 | [33mPress CTRL+C to quit[0m
+2026-07-02 18:18:06,576 |  * Restarting with stat
+2026-07-02 18:18:08,614 |  * Debugger is active!
+2026-07-02 18:18:08,621 |  * Debugger PIN: 133-755-157
+2026-07-02 18:19:05,520 | 127.0.0.1 - - [02/Jul/2026 18:19:05] "GET / HTTP/1.1" 200 -
+2026-07-02 18:19:05,894 | 127.0.0.1 - - [02/Jul/2026 18:19:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-07-02 18:19:05,899 | 127.0.0.1 - - [02/Jul/2026 18:19:05] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-07-02 18:19:29,937 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 18:19:29,956 | LoanID=1234567 | Approved=True | Probability=0.7690 | Confidence=0.7690
+2026-07-02 18:19:29,958 | 127.0.0.1 - - [02/Jul/2026 18:19:29] "POST /predict HTTP/1.1" 200 -
+2026-07-02 18:19:33,152 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 18:19:33,155 | LoanID=1234567 | Approved=True | Probability=0.8325 | Confidence=0.8325
+2026-07-02 18:19:33,155 | 127.0.0.1 - - [02/Jul/2026 18:19:33] "POST /predict HTTP/1.1" 200 -
+2026-07-02 18:19:34,972 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 18:19:34,980 | LoanID=1234567 | Approved=True | Probability=0.6627 | Confidence=0.6627
+2026-07-02 18:19:34,985 | 127.0.0.1 - - [02/Jul/2026 18:19:34] "POST /predict HTTP/1.1" 200 -
+2026-07-02 18:19:37,793 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 18:19:37,804 | LoanID=1234567 | Approved=True | Probability=0.7690 | Confidence=0.7690
+2026-07-02 18:19:37,804 | 127.0.0.1 - - [02/Jul/2026 18:19:37] "POST /predict HTTP/1.1" 200 -
+2026-07-02 18:19:42,488 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 18:19:42,502 | LoanID=1234567 | Approved=True | Probability=0.7690 | Confidence=0.7690
+2026-07-02 18:19:42,504 | 127.0.0.1 - - [02/Jul/2026 18:19:42] "POST /predict HTTP/1.1" 200 -
+2026-07-02 18:19:57,258 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 18:19:57,324 | LoanID=1234567 | Approved=True | Probability=0.6365 | Confidence=0.6365
+2026-07-02 18:19:57,329 | 127.0.0.1 - - [02/Jul/2026 18:19:57] "POST /predict HTTP/1.1" 200 -
+2026-07-02 18:20:01,234 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 18:20:01,236 | LoanID=1234567 | Approved=True | Probability=0.6918 | Confidence=0.6918
+2026-07-02 18:20:01,236 | 127.0.0.1 - - [02/Jul/2026 18:20:01] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:16:56,109 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:16:56,123 | LoanID=LP002305 | Approved=True | Probability=0.8406 | Confidence=0.8406
+2026-07-02 19:16:56,126 | 127.0.0.1 - - [02/Jul/2026 19:16:56] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:17:04,443 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:17:04,477 | LoanID=LP002305 | Approved=True | Probability=0.7652 | Confidence=0.7652
+2026-07-02 19:17:04,477 | 127.0.0.1 - - [02/Jul/2026 19:17:04] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:17:44,442 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:17:44,456 | LoanID=LP002305 | Approved=True | Probability=0.8110 | Confidence=0.8110
+2026-07-02 19:17:44,460 | 127.0.0.1 - - [02/Jul/2026 19:17:44] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:18:37,158 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:18:37,174 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:18:37,174 | 127.0.0.1 - - [02/Jul/2026 19:18:37] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:21:34,076 | 127.0.0.1 - - [02/Jul/2026 19:21:34] "GET /health HTTP/1.1" 200 -
+2026-07-02 19:21:46,382 | 127.0.0.1 - - [02/Jul/2026 19:21:46] "[31m[1mGET /predict HTTP/1.1[0m" 405 -
+2026-07-02 19:22:33,977 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:22:33,977 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:22:33,977 | 127.0.0.1 - - [02/Jul/2026 19:22:33] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:22:35,367 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:22:35,376 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:22:35,376 | 127.0.0.1 - - [02/Jul/2026 19:22:35] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:22:35,791 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:22:35,808 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:22:35,808 | 127.0.0.1 - - [02/Jul/2026 19:22:35] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:22:36,008 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:22:36,025 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:22:36,027 | 127.0.0.1 - - [02/Jul/2026 19:22:36] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:22:36,175 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:22:36,182 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:22:36,182 | 127.0.0.1 - - [02/Jul/2026 19:22:36] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:22:36,325 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:22:36,370 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:22:36,382 | 127.0.0.1 - - [02/Jul/2026 19:22:36] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:22:37,642 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:22:37,642 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:22:37,651 | 127.0.0.1 - - [02/Jul/2026 19:22:37] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:22:41,192 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:22:41,209 | LoanID=LP002305 | Approved=False | Probability=0.1075 | Confidence=0.8925
+2026-07-02 19:22:41,209 | 127.0.0.1 - - [02/Jul/2026 19:22:41] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:22:43,516 | 127.0.0.1 - - [02/Jul/2026 19:22:43] "[31m[1mGET /predict HTTP/1.1[0m" 405 -
+2026-07-02 19:25:35,160 | 127.0.0.1 - - [02/Jul/2026 19:25:35] "GET /api HTTP/1.1" 200 -
+2026-07-02 19:25:55,538 | 127.0.0.1 - - [02/Jul/2026 19:25:55] "[33mGET /logs/predictions.log HTTP/1.1[0m" 404 -
+2026-07-02 19:27:24,347 | 127.0.0.1 - - [02/Jul/2026 19:27:24] "[31m[1mGET /predict HTTP/1.1[0m" 405 -
+2026-07-02 19:29:48,208 | 127.0.0.1 - - [02/Jul/2026 19:29:48] "GET / HTTP/1.1" 200 -
+2026-07-02 19:29:48,239 | 127.0.0.1 - - [02/Jul/2026 19:29:48] "GET /static/style.css HTTP/1.1" 200 -
+2026-07-02 19:29:48,241 | 127.0.0.1 - - [02/Jul/2026 19:29:48] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-07-02 19:30:04,943 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:30:05,052 | LoanID=1234567 | Approved=True | Probability=0.9393 | Confidence=0.9393
+2026-07-02 19:30:05,053 | 127.0.0.1 - - [02/Jul/2026 19:30:05] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:31:07,739 | 127.0.0.1 - - [02/Jul/2026 19:31:07] "GET / HTTP/1.1" 200 -
+2026-07-02 19:31:07,767 | 127.0.0.1 - - [02/Jul/2026 19:31:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-07-02 19:31:07,769 | 127.0.0.1 - - [02/Jul/2026 19:31:07] "GET /static/script.js HTTP/1.1" 200 -
+2026-07-02 19:31:19,078 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:31:19,094 | LoanID=1234567 | Approved=True | Probability=0.8760 | Confidence=0.8760
+2026-07-02 19:31:19,094 | 127.0.0.1 - - [02/Jul/2026 19:31:19] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:31:24,811 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:31:24,824 | LoanID=1234567 | Approved=True | Probability=0.8065 | Confidence=0.8065
+2026-07-02 19:31:24,824 | 127.0.0.1 - - [02/Jul/2026 19:31:24] "POST /predict HTTP/1.1" 200 -
+2026-07-02 19:31:27,802 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-02 19:31:27,810 | LoanID=1234567 | Approved=False | Probability=0.0713 | Confidence=0.9287
+2026-07-02 19:31:27,812 | 127.0.0.1 - - [02/Jul/2026 19:31:27] "POST /predict HTTP/1.1" 200 -
