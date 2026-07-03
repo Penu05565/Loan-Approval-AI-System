@@ -123,18 +123,17 @@ LoanApprovalProject/
 ├── templates/
 │   └── index.html
 ├── venv
-└── src/
-    └── data_pipeline/
-        ├── schema.py                # Data Model: column contract + LoanApplication entity
-        ├── base.py                  # PipelineStage ABC (fit_transform/transform/save/load)
-        ├── data_collection.py       # Filter 1
-        ├── missing_value_handler.py # Filter 2
-        ├── duplicate_remover.py     # Filter 3
-        ├── categorical_encoder.py   # Filter 4
-        ├── feature_scaler.py        # Filter 5
-        ├── feature_selector.py      # Filter 6
-        ├── train_test_splitter.py   # Filter 7 (fans out into train/test)
-        └──pipeline.py               # Orchestrator wiring all filters together
+└── data_pipeline/
+    ├── schema.py                # Data Model: column contract + LoanApplication entity
+    ├── base.py                  # PipelineStage ABC (fit_transform/transform/save/load)
+    ├── data_collection.py       # Filter 1
+    ├── missing_value_handler.py # Filter 2
+    ├── duplicate_remover.py     # Filter 3
+    ├── categorical_encoder.py   # Filter 4
+    ├── feature_scaler.py        # Filter 5
+    ├── feature_selector.py      # Filter 6
+    ├── train_test_splitter.py   # Filter 7 (fans out into train/test)
+    └── pipeline.py               # Orchestrator wiring all filters together
 ```
 
 ## Technologies
