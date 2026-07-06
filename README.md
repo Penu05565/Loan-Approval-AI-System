@@ -75,8 +75,8 @@ https://raw.githubusercontent.com/dphi-official/Datasets/master/Loan_Data/loan_t
 
 Target:
 
--   **Loan_Status = 1** → Approved
--   **Loan_Status = 0** → Rejected
+-   **Loan_Status = 1** → Not Default
+-   **Loan_Status = 0** → Default
 
 Features:
 

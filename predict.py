@@ -45,14 +45,14 @@ MODELS_DIR = os.path.join(BASE_DIR, "models")
 class PredictionResult:
     loan_id: str
     approved: bool
-    approval_probability: float
+    risk_probability: float
     confidence: float
 
     def to_dict(self) -> dict:
         return {
             "loan_id": self.loan_id,
             "approved": self.approved,
-            "approval_probability": round(self.approval_probability, 4),
+            "risk_probability": round(self.risk_probability, 4),
             "confidence": round(self.confidence, 4),
         }
 
@@ -120,14 +120,14 @@ class LoanPredictionService:
 
         prediction = self.model.predict(prepared)[0]
         probabilities = self.model.predict_proba(prepared)[0]
-        approval_probability = float(probabilities[1])  # P(Loan_Status == 1)
+        risk_probability = float(1-probabilities[1])  # P(Loan_Status == 1)
         approved = bool(prediction == 1)
-        confidence = approval_probability if approved else (1 - approval_probability)
+        confidence = risk_probability if approved else (1-risk_probability)
 
         return PredictionResult(
             loan_id=application.loan_id,
             approved=approved,
-            approval_probability=approval_probability,
+            risk_probability=risk_probability,
             confidence=confidence,
         )
 

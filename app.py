@@ -148,7 +148,7 @@ def predict():
             "LoanID=%s | Approved=%s | Probability=%.4f | Confidence=%.4f",
             result.loan_id,
             result.approved,
-            result.approval_probability,
+            result.risk_probability,
             result.confidence,
         )
 
