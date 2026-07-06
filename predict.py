@@ -120,9 +120,10 @@ class LoanPredictionService:
 
         prediction = self.model.predict(prepared)[0]
         probabilities = self.model.predict_proba(prepared)[0]
+        prob_approved = float(probabilities[1])
         risk_probability = float(1-probabilities[1])  # P(Loan_Status == 1)
         approved = bool(prediction == 1)
-        confidence = risk_probability if approved else (1-risk_probability)
+        confidence = prob_approved if approved else (1-prob_approved)
 
         return PredictionResult(
             loan_id=application.loan_id,

@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 : "<span class='badge bg-danger'>REJECTED ❌</span>";
 
         document.getElementById("probabilityResult").textContent =
-            `${(prediction.approval_probability * 100).toFixed(2)}%`;
+            `${(prediction.risk_probability * 100).toFixed(2)}%`;
 
         document.getElementById("confidenceResult").textContent =
             `${(prediction.confidence * 100).toFixed(2)}%`;

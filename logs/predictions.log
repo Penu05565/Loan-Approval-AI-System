@@ -168,3 +168,74 @@
 2026-07-03 21:37:44,306 | 127.0.0.1 - - [03/Jul/2026 21:37:44] "POST /predict HTTP/1.1" 200 -
 2026-07-03 21:38:57,554 | 127.0.0.1 - - [03/Jul/2026 21:38:57] "GET /health HTTP/1.1" 200 -
 2026-07-03 21:40:11,551 | 127.0.0.1 - - [03/Jul/2026 21:40:11] "[33mGET /logs/predictions.log HTTP/1.1[0m" 404 -
+2026-07-06 20:22:16,114 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.8:5000
+2026-07-06 20:22:16,114 | [33mPress CTRL+C to quit[0m
+2026-07-06 20:22:16,116 |  * Restarting with stat
+2026-07-06 20:22:18,612 |  * Debugger is active!
+2026-07-06 20:22:18,634 |  * Debugger PIN: 590-205-364
+2026-07-06 20:22:24,605 | 127.0.0.1 - - [06/Jul/2026 20:22:24] "GET / HTTP/1.1" 200 -
+2026-07-06 20:22:25,006 | 127.0.0.1 - - [06/Jul/2026 20:22:25] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-07-06 20:22:25,007 | 127.0.0.1 - - [06/Jul/2026 20:22:25] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-07-06 20:22:25,108 | 127.0.0.1 - - [06/Jul/2026 20:22:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-06 20:22:35,313 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:22:35,328 | LoanID=2115 | Approved=True | Probability=0.1263 | Confidence=0.1263
+2026-07-06 20:22:35,328 | 127.0.0.1 - - [06/Jul/2026 20:22:35] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:32:40,745 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:32:40,755 | LoanID=2115 | Approved=True | Probability=0.1263 | Confidence=0.1263
+2026-07-06 20:32:40,756 | 127.0.0.1 - - [06/Jul/2026 20:32:40] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:32:42,933 | 127.0.0.1 - - [06/Jul/2026 20:32:42] "GET / HTTP/1.1" 200 -
+2026-07-06 20:32:42,959 | 127.0.0.1 - - [06/Jul/2026 20:32:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-07-06 20:32:42,965 | 127.0.0.1 - - [06/Jul/2026 20:32:42] "GET /static/script.js HTTP/1.1" 200 -
+2026-07-06 20:33:12,164 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.8:5000
+2026-07-06 20:33:12,164 | [33mPress CTRL+C to quit[0m
+2026-07-06 20:33:12,166 |  * Restarting with stat
+2026-07-06 20:33:15,039 |  * Debugger is active!
+2026-07-06 20:33:15,040 |  * Debugger PIN: 590-205-364
+2026-07-06 20:33:15,348 | 127.0.0.1 - - [06/Jul/2026 20:33:15] "GET / HTTP/1.1" 200 -
+2026-07-06 20:33:16,071 | 127.0.0.1 - - [06/Jul/2026 20:33:16] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-07-06 20:33:16,072 | 127.0.0.1 - - [06/Jul/2026 20:33:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-07-06 20:33:29,949 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:33:29,963 | LoanID=2115 | Approved=True | Probability=0.2123 | Confidence=0.2123
+2026-07-06 20:33:29,964 | 127.0.0.1 - - [06/Jul/2026 20:33:29] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:34:57,830 | 127.0.0.1 - - [06/Jul/2026 20:34:57] "GET / HTTP/1.1" 200 -
+2026-07-06 20:34:57,846 | 127.0.0.1 - - [06/Jul/2026 20:34:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-07-06 20:34:57,849 | 127.0.0.1 - - [06/Jul/2026 20:34:57] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-07-06 20:35:06,614 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:35:06,626 | LoanID=2115 | Approved=True | Probability=0.0957 | Confidence=0.0957
+2026-07-06 20:35:06,627 | 127.0.0.1 - - [06/Jul/2026 20:35:06] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:35:18,337 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:35:18,345 | LoanID=2115 | Approved=False | Probability=0.9480 | Confidence=0.0520
+2026-07-06 20:35:18,347 | 127.0.0.1 - - [06/Jul/2026 20:35:18] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:39:05,930 |  * Detected change in 'D:\\2nd Sem\\SE4ML\\Assignment 1\\LoanApprovalPrediction\\src\\predict.py', reloading
+2026-07-06 20:39:06,215 |  * Restarting with stat
+2026-07-06 20:39:08,741 |  * Debugger is active!
+2026-07-06 20:39:08,743 |  * Debugger PIN: 590-205-364
+2026-07-06 20:39:10,892 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:39:10,933 | LoanID=2115 | Approved=False | Probability=0.9480 | Confidence=0.9480
+2026-07-06 20:39:10,939 | 127.0.0.1 - - [06/Jul/2026 20:39:10] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:45:30,077 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.8:5000
+2026-07-06 20:45:30,079 | [33mPress CTRL+C to quit[0m
+2026-07-06 20:45:30,082 |  * Restarting with stat
+2026-07-06 20:45:33,571 |  * Debugger is active!
+2026-07-06 20:45:33,576 |  * Debugger PIN: 590-205-364
+2026-07-06 20:45:33,616 | 127.0.0.1 - - [06/Jul/2026 20:45:33] "GET / HTTP/1.1" 200 -
+2026-07-06 20:45:33,817 | 127.0.0.1 - - [06/Jul/2026 20:45:33] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-07-06 20:45:33,819 | 127.0.0.1 - - [06/Jul/2026 20:45:33] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-07-06 20:45:43,332 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:45:43,348 | LoanID=2115 | Approved=True | Probability=0.1357 | Confidence=0.8643
+2026-07-06 20:45:43,348 | 127.0.0.1 - - [06/Jul/2026 20:45:43] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:45:48,554 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:45:48,578 | LoanID=2115 | Approved=False | Probability=0.9555 | Confidence=0.9555
+2026-07-06 20:45:48,579 | 127.0.0.1 - - [06/Jul/2026 20:45:48] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:46:13,955 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 20:46:13,967 | LoanID=2115 | Approved=False | Probability=0.9555 | Confidence=0.9555
+2026-07-06 20:46:13,969 | 127.0.0.1 - - [06/Jul/2026 20:46:13] "POST /predict HTTP/1.1" 200 -
