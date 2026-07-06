@@ -239,3 +239,17 @@
 2026-07-06 20:46:13,955 | FeatureSelector: selected top features -> shape=(1, 13)
 2026-07-06 20:46:13,967 | LoanID=2115 | Approved=False | Probability=0.9555 | Confidence=0.9555
 2026-07-06 20:46:13,969 | 127.0.0.1 - - [06/Jul/2026 20:46:13] "POST /predict HTTP/1.1" 200 -
+2026-07-06 20:46:24,699 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.8:5000
+2026-07-06 20:46:24,699 | [33mPress CTRL+C to quit[0m
+2026-07-06 20:46:24,701 |  * Restarting with stat
+2026-07-06 20:46:27,026 |  * Debugger is active!
+2026-07-06 20:46:27,027 |  * Debugger PIN: 590-205-364
+2026-07-06 21:07:50,827 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 21:07:50,835 | LoanID=2115 | Approved=True | Probability=0.1357 | Confidence=0.8643
+2026-07-06 21:07:50,836 | 127.0.0.1 - - [06/Jul/2026 21:07:50] "POST /predict HTTP/1.1" 200 -
+2026-07-06 21:12:38,942 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-07-06 21:12:38,978 | LoanID=2115 | Approved=True | Probability=0.1357 | Confidence=0.8643
+2026-07-06 21:12:38,979 | 127.0.0.1 - - [06/Jul/2026 21:12:38] "POST /predict HTTP/1.1" 200 -

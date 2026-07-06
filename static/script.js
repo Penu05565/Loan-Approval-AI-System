@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById("statusResult").innerHTML =
             prediction.approved
-                ? "<span class='badge bg-success'>APPROVED ✅</span>"
-                : "<span class='badge bg-danger'>REJECTED ❌</span>";
+                ? "<span class='badge bg-success'>LOW RISK ✅</span>"
+                : "<span class='badge bg-danger'>HIGH RISK ❌</span>";
 
         document.getElementById("probabilityResult").textContent =
             `${(prediction.risk_probability * 100).toFixed(2)}%`;
