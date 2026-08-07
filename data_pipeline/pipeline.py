@@ -61,12 +61,21 @@ class LoanDataPreparationPipeline:
             test_size=self.test_size, random_state=self.random_state
         )
 
+    def feature_engineering(self, df):
+        df = df.copy()
+        df["total_income"] = df["ApplicantIncome"] + df["CoapplicantIncome"]
+        df["income_loan_ratio"] = df["total_income"] / (df["LoanAmount"].fillna(df["LoanAmount"].median()) + 1)
+        df["loan_per_income"] = df["LoanAmount"].fillna(df["LoanAmount"].median()) / (df["total_income"] + 1)
+        df["is_high_loan"] = (df["LoanAmount"] > df["LoanAmount"].median()).astype(int)
+        return df
+    
     def run(self) -> SplitResult:
         """Executes every filter in sequence and returns the train/test split."""
         logger.info("=== Loan Data Preparation Pipeline: START ===")
 
         df = self.collector.fit_transform()
         df = self.missing_value_handler.fit_transform(df)
+        df = self.feature_engineering(df)
         df = self.duplicate_remover.fit_transform(df)
         df = self.categorical_encoder.fit_transform(df)
         df = self.feature_scaler.fit_transform(df)
@@ -83,6 +92,7 @@ class LoanDataPreparationPipeline:
         online Risk Scoring Service would call.
         """
         df = self.missing_value_handler.transform(df)
+        df = self.feature_engineering(df)
         df = self.categorical_encoder.transform(df)
         df = self.feature_scaler.transform(df)
         df = self.feature_selector.transform(df)

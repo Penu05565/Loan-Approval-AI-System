@@ -6,7 +6,7 @@ This project implements an **AI-Powered Loan Approval Risk Prediction
 System** following **Software Engineering for Machine Learning (SE4ML)**
 principles. It demonstrates an end-to-end machine learning workflow
 including data preparation, model training, online prediction, and
-deployment using a Flask web application.
+deployment using a FastAPI web application.
 
 ### System Workflow
 
@@ -20,7 +20,10 @@ Data Preparation Pipeline
 Train/Test Dataset
     │
     ▼
-Gradient Boosting Model Training
+Random Forest Model Training
+    │
+    ▼
+Model Evaluation
     │
     ▼
 Trained Model (.pkl)
@@ -29,7 +32,7 @@ Trained Model (.pkl)
 Prediction Service
     │
     ▼
-Flask REST API
+FastAPI REST API
     │
     ▼
 Web User Interface
@@ -51,6 +54,9 @@ Missing Value Handling
  │
  ▼
 Duplicate Removal
+ │
+ ▼
+Feature Engineering
  │
  ▼
 Categorical Encoding
@@ -75,8 +81,8 @@ https://raw.githubusercontent.com/dphi-official/Datasets/master/Loan_Data/loan_t
 
 Target:
 
--   **Loan_Status = 1** → Not Default
--   **Loan_Status = 0** → Default
+-   **Loan_Status = 1** → Not Default/ Approved
+-   **Loan_Status = 0** → Default/ Not Approved
 
 Features:
 
@@ -122,6 +128,8 @@ LoanApprovalProject/
 │   └── script.js
 ├── templates/
 │   └── index.html
+├── tests/
+│   └── test_pipeline.py
 ├── venv
 └── data_pipeline/
     ├── schema.py                # Data Model: column contract + LoanApplication entity
@@ -143,11 +151,12 @@ LoanApprovalProject/
 -   NumPy
 -   Scikit-learn
 -   Joblib
--   Flask
+-   FastAPI
 -   HTML5
 -   CSS3
 -   Bootstrap 5
 -   JavaScript
+-   Pytest
 
 ## Setup
 
@@ -169,12 +178,6 @@ source venv/bin/activate
 
 ``` bash
 pip install -r requirements.txt
-```
-
-or
-
-``` bash
-pip install pandas numpy scikit-learn flask joblib
 ```
 
 ## Run the Project
@@ -206,20 +209,22 @@ Outputs:
 ### 3. Launch the Web Application
 
 ``` bash
-python app.py
+uvicorn app:app --reload --host 127.0.0.1 --port 8000
 ```
 
 Open:
 
 ``` text
-http://127.0.0.1:5000
+http://127.0.0.1:8000
 ```
+
+The interactive API docs are available at `/docs`.
 
 ## REST API
 
 ### GET /
 
-Returns the web application.
+Returns a JSON status payload and docs link.
 
 ### GET /health
 
@@ -228,7 +233,9 @@ Example:
 ``` json
 {
   "status": "healthy",
-  "model_loaded": true
+  "service": "Loan Approval Prediction API",
+  "model_loaded": true,
+  "timestamp": "2026-08-08T00:00:00"
 }
 ```
 
@@ -305,7 +312,7 @@ Used for the complete data preprocessing pipeline.
 Presentation Layer
       │
       ▼
-Flask REST API
+FastAPI REST API
       │
       ▼
 Prediction Service

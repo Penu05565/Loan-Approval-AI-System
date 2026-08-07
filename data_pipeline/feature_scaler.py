@@ -23,16 +23,27 @@ class FeatureScaler(PipelineStage):
     """Standard-scales numerical features in place."""
 
     name = "FeatureScaler"
+    ENGINEERED_NUMERICAL_FEATURES = [
+        "total_income",
+        "income_loan_ratio",
+        "loan_per_income",
+    ]
 
     def __init__(self) -> None:
         super().__init__()
         self._scaler = StandardScaler()
 
+    def _scaling_columns(self, df: pd.DataFrame) -> list[str]:
+        return [
+            col
+            for col in schema.NUMERICAL_FEATURES + self.ENGINEERED_NUMERICAL_FEATURES
+            if col in df.columns
+        ]
+
     def fit_transform(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
-        df[schema.NUMERICAL_FEATURES] = self._scaler.fit_transform(
-            df[schema.NUMERICAL_FEATURES]
-        )
+        scale_cols = self._scaling_columns(df)
+        df[scale_cols] = self._scaler.fit_transform(df[scale_cols])
         self._is_fitted = True
         self.log_shape(df, "scaled numerical features")
         return df
@@ -40,7 +51,6 @@ class FeatureScaler(PipelineStage):
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
         self._require_fitted()
         df = df.copy()
-        df[schema.NUMERICAL_FEATURES] = self._scaler.transform(
-            df[schema.NUMERICAL_FEATURES]
-        )
+        scale_cols = self._scaling_columns(df)
+        df[scale_cols] = self._scaler.transform(df[scale_cols])
         return df

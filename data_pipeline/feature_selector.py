@@ -29,7 +29,7 @@ class FeatureSelector(PipelineStage):
 
     name = "FeatureSelector"
 
-    def __init__(self, k: int = 12, variance_threshold: float = 0.01) -> None:
+    def __init__(self, k: int = 999, variance_threshold: float = 0.01) -> None:
         super().__init__()
         self.k = k
         self._variance_filter = VarianceThreshold(threshold=variance_threshold)

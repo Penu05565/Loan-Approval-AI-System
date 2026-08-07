@@ -14,9 +14,17 @@ from .schema import LoanApplication
 from .pipeline import LoanDataPreparationPipeline
 from .base import PipelineStage
 
+import pandas as pd
+
+
+def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
+    """A lightweight preprocessing helper for tests and quick validation."""
+    return df.copy()
+
 __all__ = [
     "LoanDataPreparationPipeline",
     "LoanApplication",
     "PipelineStage",
     "schema",
+    "preprocess_data",
 ]
