@@ -1,7 +1,7 @@
 """
 app.py
 -------
-Flask REST API for the AI-Powered Loan Approval Risk Prediction System.
+FastAPI REST API for the AI-Powered Loan Approval Risk Prediction System.
 
 Architecture
 
@@ -25,21 +25,26 @@ Run:
 Open:
     http://127.0.0.1:5000
 """
-
 import logging
 import os
 from datetime import datetime
+from typing import Optional
 
-from flask import Flask, jsonify, render_template, request
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
 from predict import LoanPredictionService
 
 
 # --------------------------------------------------------------------
-# Flask App
+# FastAPI App
 # --------------------------------------------------------------------
 
-app = Flask(__name__)
+app = FastAPI(
+    title="Loan Approval Prediction API",
+    description="Predict loan approval using ML model",
+    version="2.0"
+)
 
 # --------------------------------------------------------------------
 # Load prediction service ONCE
@@ -61,86 +66,59 @@ logging.basicConfig(
 )
 
 # --------------------------------------------------------------------
-# Home Page
+# Request Schema (VERY IMPORTANT)
 # --------------------------------------------------------------------
 
+class LoanRequest(BaseModel):
+    loan_id: str
+    gender: str
+    married: str
+    dependents: str
+    education: str
+    self_employed: str
+    applicant_income: float
+    coapplicant_income: float
+    loan_amount: float
+    loan_amount_term: float
+    credit_history: float
+    property_area: str
 
-@app.route("/")
+
+# --------------------------------------------------------------------
+# Home
+# --------------------------------------------------------------------
+
+@app.get("/")
 def home():
-    return render_template("index.html")
+    return {
+        "message": "Loan Approval Prediction API is running",
+        "docs": "/docs"
+    }
 
 
 # --------------------------------------------------------------------
 # Health Check
 # --------------------------------------------------------------------
 
-
-@app.route("/health", methods=["GET"])
+@app.get("/health")
 def health():
-
-    return jsonify(
-        {
-            "status": "healthy",
-            "service": "Loan Approval Prediction API",
-            "model_loaded": True,
-            "timestamp": datetime.now().isoformat(),
-        }
-    )
+    return {
+        "status": "healthy",
+        "service": "Loan Approval Prediction API",
+        "model_loaded": True,
+        "timestamp": datetime.now().isoformat(),
+    }
 
 
 # --------------------------------------------------------------------
 # Prediction Endpoint
 # --------------------------------------------------------------------
 
-
-@app.route("/predict", methods=["POST"])
-def predict():
+@app.post("/predict")
+def predict(request: LoanRequest):
 
     try:
-
-        payload = request.get_json()
-
-        if payload is None:
-            return (
-                jsonify(
-                    {
-                        "success": False,
-                        "error": "Request body must contain JSON."
-                    }
-                ),
-                400,
-            )
-
-        required_fields = [
-            "loan_id",
-            "gender",
-            "married",
-            "dependents",
-            "education",
-            "self_employed",
-            "applicant_income",
-            "coapplicant_income",
-            "loan_amount",
-            "loan_amount_term",
-            "credit_history",
-            "property_area",
-        ]
-
-        missing = [
-            field for field in required_fields
-            if field not in payload
-        ]
-
-        if missing:
-            return (
-                jsonify(
-                    {
-                        "success": False,
-                        "missing_fields": missing,
-                    }
-                ),
-                400,
-            )
+        payload = request.dict()
 
         result = service.predict_from_dict(payload)
 
@@ -152,69 +130,32 @@ def predict():
             result.confidence,
         )
 
-        return jsonify(
-            {
-                "success": True,
-                "prediction": result.to_dict(),
-            }
-        )
+        return {
+            "success": True,
+            "prediction": result.to_dict(),
+        }
 
     except ValueError as ex:
-
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "error": str(ex),
-                }
-            ),
-            400,
-        )
+        raise HTTPException(status_code=400, detail=str(ex))
 
     except Exception as ex:
-
         logging.exception("Prediction failed")
-
-        return (
-            jsonify(
-                {
-                    "success": False,
-                    "error": str(ex),
-                }
-            ),
-            500,
-        )
+        raise HTTPException(status_code=500, detail=str(ex))
 
 
 # --------------------------------------------------------------------
-# API Information
+# API Info
 # --------------------------------------------------------------------
 
-
-@app.route("/api", methods=["GET"])
+@app.get("/api")
 def api():
-
-    return jsonify(
-        {
-            "name": "Loan Approval Risk Prediction API",
-            "version": "1.0",
-            "endpoints": {
-                "/": "Frontend",
-                "/health": "Health Check",
-                "/predict": "POST Prediction",
-            },
-        }
-    )
-
-
-# --------------------------------------------------------------------
-# Main
-# --------------------------------------------------------------------
-
-if __name__ == "__main__":
-
-    app.run(
-        host="0.0.0.0",
-        port=5000,
-        debug=True,
-    )
+    return {
+        "name": "Loan Approval Risk Prediction API",
+        "version": "2.0",
+        "endpoints": {
+            "/": "Home",
+            "/health": "Health Check",
+            "/predict": "POST Prediction",
+            "/docs": "Swagger UI",
+        },
+    }

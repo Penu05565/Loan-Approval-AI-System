@@ -64,15 +64,14 @@ def train_model(X_train, y_train):
     # the Analytics Design View. n_estimators/learning_rate/max_depth are
     # kept moderate to avoid overfitting on a ~390-row training set.
     model = GradientBoostingClassifier(
-        n_estimators=300,
-        learning_rate=0.03,
-        max_depth=2,
-        subsample=0.8,
+        n_estimators=500,
+        learning_rate=0.05,
+        max_depth=3,
+        subsample=0.9,
         random_state=RANDOM_STATE,
     )
     model.fit(X_train, y_train)
     return model
-
 
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)

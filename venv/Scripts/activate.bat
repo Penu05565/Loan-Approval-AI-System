@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\2nd Sem\SE4ML\Assignment 1\LoanApprovalPrediction\src\venv
+set VIRTUAL_ENV=C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
