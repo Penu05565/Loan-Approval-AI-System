@@ -1,0 +1,8 @@
+Lint report (placeholder)
+
+No automated lint run was executed by the CI agent. To generate a lint report locally, run:
+
+pip install ruff
+ruff check . --format text > lint-report.txt
+
+Recommended rules: ruff's default, or enable strict rules via a project-specific config (.ruff.toml).

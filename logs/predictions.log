@@ -379,3 +379,144 @@ AttributeError: 'SimpleImputer' object has no attribute '_fill_dtype'. Did you m
 2026-08-08 14:45:12,920 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
 2026-08-08 14:53:28,506 | FeatureSelector: selected top features -> shape=(1, 13)
 2026-08-08 14:53:28,542 | LoanID=123456679 | Approved=False | Probability=0.6706 | Confidence=0.6706
+2026-08-08 17:48:51,639 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 17:48:51,644 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 17:48:51,644 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 17:48:51,661 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 17:48:51,661 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 17:48:51,661 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 17:48:51,661 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 17:48:51,661 | FeatureSelector: selected 20 features -> ['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History', 'total_income', 'income_loan_ratio', 'loan_per_income', 'is_high_loan', 'Gender_Male', 'Married_Yes', 'Dependents_0', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Self_Employed_Yes', 'Property_Area_Rural', 'Property_Area_Semiurban', 'Property_Area_Urban']
+2026-08-08 17:48:51,678 | FeatureSelector: selected top features -> shape=(491, 22)
+2026-08-08 17:48:51,678 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 17:48:51,678 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 17:48:59,178 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 17:48:59,178 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 17:48:59,178 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 17:48:59,191 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 17:48:59,194 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 17:48:59,194 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 17:48:59,194 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 17:48:59,194 | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-08 17:48:59,194 | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-08 17:48:59,194 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 17:48:59,194 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 17:48:59,228 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 17:52:51,966 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 17:52:51,966 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 17:52:51,966 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 17:52:51,975 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 17:52:51,992 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 17:52:51,992 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 17:52:51,992 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 17:52:51,992 | FeatureSelector: selected 20 features -> ['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History', 'total_income', 'income_loan_ratio', 'loan_per_income', 'is_high_loan', 'Gender_Male', 'Married_Yes', 'Dependents_0', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Self_Employed_Yes', 'Property_Area_Rural', 'Property_Area_Semiurban', 'Property_Area_Urban']
+2026-08-08 17:52:51,992 | FeatureSelector: selected top features -> shape=(491, 22)
+2026-08-08 17:52:52,007 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 17:52:52,007 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 17:52:59,535 | HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-08-08 17:52:59,551 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 17:52:59,558 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-08 17:52:59,560 | HTTP Request: POST http://testserver/predict "HTTP/1.1 200 OK"
+2026-08-08 17:52:59,560 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 17:52:59,566 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 17:52:59,566 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 17:52:59,570 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 17:52:59,575 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 17:52:59,580 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 17:52:59,582 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 17:52:59,584 | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-08 17:52:59,584 | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-08 17:52:59,586 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 17:52:59,586 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 17:52:59,613 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 17:55:48,970 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 17:55:48,976 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 17:55:48,976 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 17:55:48,991 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 17:55:48,995 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 17:55:48,999 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 17:55:49,001 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 17:55:49,003 | FeatureSelector: selected 20 features -> ['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History', 'total_income', 'income_loan_ratio', 'loan_per_income', 'is_high_loan', 'Gender_Male', 'Married_Yes', 'Dependents_0', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Self_Employed_Yes', 'Property_Area_Rural', 'Property_Area_Semiurban', 'Property_Area_Urban']
+2026-08-08 17:55:49,003 | FeatureSelector: selected top features -> shape=(491, 22)
+2026-08-08 17:55:49,003 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 17:55:49,003 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 17:55:56,640 | HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-08-08 17:55:56,646 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 17:55:56,659 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-08 17:55:56,659 | HTTP Request: POST http://testserver/predict "HTTP/1.1 200 OK"
+2026-08-08 17:55:56,659 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 17:55:56,659 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 17:55:56,659 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 17:55:56,659 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 17:55:56,676 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 17:55:56,679 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 17:55:56,681 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 17:55:56,684 | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-08 17:55:56,684 | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-08 17:55:56,684 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 17:55:56,684 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 17:55:56,706 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 17:59:31,637 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 17:59:31,652 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 17:59:31,653 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 17:59:31,672 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 17:59:31,672 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 17:59:31,672 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 17:59:31,672 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 17:59:31,687 | FeatureSelector: selected 20 features -> ['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History', 'total_income', 'income_loan_ratio', 'loan_per_income', 'is_high_loan', 'Gender_Male', 'Married_Yes', 'Dependents_0', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Self_Employed_Yes', 'Property_Area_Rural', 'Property_Area_Semiurban', 'Property_Area_Urban']
+2026-08-08 17:59:31,687 | FeatureSelector: selected top features -> shape=(491, 22)
+2026-08-08 17:59:31,687 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 17:59:31,687 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 17:59:39,137 | HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-08-08 17:59:39,154 | Predict request payload: {'loan_id': 'LP999999', 'gender': 'Female', 'married': 'Yes', 'dependents': '1', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 5200.0, 'coapplicant_income': 1500.0, 'loan_amount': 110.0, 'loan_amount_term': 360.0, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-08 17:59:39,154 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 17:59:39,170 | Prediction result: LoanID=LP999999 Approved=True Prob=0.4385 Conf=0.5615
+2026-08-08 17:59:39,170 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-08 17:59:39,170 | HTTP Request: POST http://testserver/predict "HTTP/1.1 200 OK"
+2026-08-08 17:59:39,170 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 17:59:39,170 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 17:59:39,170 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 17:59:39,170 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 17:59:39,187 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 17:59:39,187 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 17:59:39,187 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 17:59:39,187 | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-08 17:59:39,187 | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-08 17:59:39,187 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 17:59:39,187 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 17:59:39,220 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 17:59:39,271 | Predict request payload: {'loan_id': 'LPTEST123', 'gender': 'Female', 'married': 'Yes', 'dependents': '0', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 4000, 'coapplicant_income': 0, 'loan_amount': 100, 'loan_amount_term': 360, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-08 17:59:39,287 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 17:59:39,287 | Prediction result: LoanID=LPTEST123 Approved=True Prob=0.3790 Conf=0.6210
+2026-08-08 18:00:16,086 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 18:00:16,086 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 18:00:16,086 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 18:00:16,103 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 18:00:16,103 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 18:00:16,119 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 18:00:16,119 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 18:00:16,119 | FeatureSelector: selected 20 features -> ['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History', 'total_income', 'income_loan_ratio', 'loan_per_income', 'is_high_loan', 'Gender_Male', 'Married_Yes', 'Dependents_0', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Self_Employed_Yes', 'Property_Area_Rural', 'Property_Area_Semiurban', 'Property_Area_Urban']
+2026-08-08 18:00:16,119 | FeatureSelector: selected top features -> shape=(491, 22)
+2026-08-08 18:00:16,119 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 18:00:16,119 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 18:00:24,986 | HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-08-08 18:00:24,993 | Predict request payload: {'loan_id': 'LP999999', 'gender': 'Female', 'married': 'Yes', 'dependents': '1', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 5200.0, 'coapplicant_income': 1500.0, 'loan_amount': 110.0, 'loan_amount_term': 360.0, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-08 18:00:25,005 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 18:00:25,015 | Prediction result: LoanID=LP999999 Approved=True Prob=0.4385 Conf=0.5615
+2026-08-08 18:00:25,015 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-08 18:00:25,015 | HTTP Request: POST http://testserver/predict "HTTP/1.1 200 OK"
+2026-08-08 18:00:25,020 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 18:00:25,023 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 18:00:25,023 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 18:00:25,029 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 18:00:25,031 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 18:00:25,036 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 18:00:25,042 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 18:00:25,044 | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-08 18:00:25,044 | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-08 18:00:25,046 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 18:00:25,046 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 18:00:25,075 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 18:00:25,147 | Predict request payload: {'loan_id': 'LPTEST123', 'gender': 'Female', 'married': 'Yes', 'dependents': '0', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 4000, 'coapplicant_income': 0, 'loan_amount': 100, 'loan_amount_term': 360, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-08 18:00:25,158 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 18:00:25,168 | Prediction result: LoanID=LPTEST123 Approved=True Prob=0.3790 Conf=0.6210

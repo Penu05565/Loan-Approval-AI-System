@@ -2,7 +2,7 @@
 predict.py
 ==========
 Online prediction path for the Risk Scoring Service. This is the module the
-Flask/FastAPI prediction endpoint (see System Architecture, "ML Prediction
+FastAPI prediction endpoint (see System Architecture, "ML Prediction
 Service") calls for every incoming loan application.
 
 It reuses the *already-fitted* data preparation filters produced by
@@ -13,8 +13,8 @@ scaler/encoder than the one the model was trained on, silently corrupting
 every result.
 
 Stage order mirrors LoanDataPreparationPipeline.transform_single() exactly:
-    missing_value_handler -> categorical_encoder -> feature_scaler ->
-    feature_selector
+    missing_value_handler -> feature_engineering -> categorical_encoder ->
+    feature_scaler -> feature_selector
 (DataCollector, DuplicateRemover, and TrainTestSplitter are training-only
 stages and are intentionally skipped here, same as in the pipeline module.)
 
@@ -25,23 +25,20 @@ Usage:
 from __future__ import annotations
 
 import os
-import sys
 from dataclasses import dataclass
 
 import joblib
 import pandas as pd
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
-
-from data_pipeline.base import PipelineStage  # noqa: E402
-from data_pipeline import LoanApplication  # noqa: E402
+from data_pipeline import LoanApplication
+from data_pipeline.base import PipelineStage
+from utils.logger import get_logger
+from config import BASE_DIR
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ARTIFACTS_DIR = os.path.join(BASE_DIR, "output", "artifacts")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
-
-sys.path.insert(0, os.path.join(BASE_DIR, "src"))
 
 
 @dataclass
@@ -65,7 +62,7 @@ class LoanPredictionService:
     Loads the fitted data preparation filters and the trained classifier
     once at startup, then serves predictions for individual applications.
     Intended to be instantiated a single time (e.g. as a module-level
-    singleton in the Flask app) rather than per-request, since loading
+    singleton in the API app) rather than per-request, since loading
     joblib artifacts repeatedly would add unnecessary latency.
     """
 
@@ -74,6 +71,7 @@ class LoanPredictionService:
         artifacts_dir: str = ARTIFACTS_DIR,
         models_dir: str = MODELS_DIR,
     ) -> None:
+        self.logger = get_logger(__name__)
         # --- Fitted data preparation filters (order matters, see module docstring) ---
         self.missing_value_handler = PipelineStage.load(
             os.path.join(artifacts_dir, "missing_value_handler.joblib")
@@ -138,9 +136,9 @@ class LoanPredictionService:
         prediction = self.model.predict(prepared)[0]
         probabilities = self.model.predict_proba(prepared)[0]
         prob_approved = float(probabilities[1])
-        risk_probability = float(1-probabilities[1])  # P(Loan_Status == 1)
+        risk_probability = float(1 - probabilities[1])  # P(Loan_Status == 1)
         approved = bool(prediction == 1)
-        confidence = prob_approved if approved else (1-prob_approved)
+        confidence = prob_approved if approved else (1 - prob_approved)
 
         return PredictionResult(
             loan_id=application.loan_id,
@@ -150,9 +148,23 @@ class LoanPredictionService:
         )
 
     def predict_from_dict(self, payload: dict) -> PredictionResult:
-        """Convenience entry point for a Flask route: request.json -> result."""
-        application = LoanApplication(**payload)
-        return self.predict(application)
+        """Convenience entry point for an API route: request payload -> result."""
+        try:
+            self.logger.info("Predict request payload: %s", payload)
+            application = LoanApplication(**payload)
+        except Exception as exc:
+            self.logger.warning("Payload validation failed: %s", exc)
+            raise
+
+        result = self.predict(application)
+        self.logger.info(
+            "Prediction result: LoanID=%s Approved=%s Prob=%.4f Conf=%.4f",
+            result.loan_id,
+            result.approved,
+            result.risk_probability,
+            result.confidence,
+        )
+        return result
 
 
 def main() -> None:

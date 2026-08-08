@@ -1,21 +1,26 @@
-import sys
 from pathlib import Path
 
-import pandas as pd
+from data_pipeline import LoanDataPreparationPipeline
 
-ROOT_DIR = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT_DIR))
 
-from data_pipeline import preprocess_data
+def test_pipeline_runs_and_splits():
+    root_dir = Path(__file__).resolve().parents[1]
+    dataset_path = root_dir / "data" / "loan_dataset.csv"
 
-def test_preprocess_runs():
-    df = pd.DataFrame({
-        "Gender": ["Male"],
-        "Married": ["Yes"],
-        "ApplicantIncome": [5000]
-    })
+    pipeline = LoanDataPreparationPipeline(
+        source_path=str(dataset_path),
+        top_k_features=12,
+        test_size=0.2,
+        random_state=42,
+    )
 
-    result = preprocess_data(df)
+    result = pipeline.run()
 
-    assert result is not None
-    assert len(result) == 1
+    assert result.train_df is not None
+    assert result.test_df is not None
+    assert len(result.train_df) > 0
+    assert len(result.test_df) > 0
+    assert set(result.train_df.columns) == set(result.test_df.columns)
+    split_fraction = len(result.test_df) / (len(result.train_df) + len(result.test_df))
+    assert 0.1 < split_fraction < 0.3
+

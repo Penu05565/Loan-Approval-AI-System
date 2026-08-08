@@ -8,7 +8,7 @@ Architecture
 Browser / Postman
         │
         ▼
-Flask REST API
+FastAPI REST API
         │
         ▼
 LoanPredictionService (predict.py)
@@ -17,13 +17,13 @@ LoanPredictionService (predict.py)
 Preprocessing Pipeline
         │
         ▼
-Gradient Boosting Model
+Random Forest Model
 
 Run:
-    python app.py
+    uvicorn app:app --reload --host 127.0.0.1 --port 8000
 
 Open:
-    http://127.0.0.1:5000
+    http://127.0.0.1:8000
 """
 import logging
 import os
@@ -121,7 +121,7 @@ def health():
 def predict(request: LoanRequest):
 
     try:
-        payload = request.dict()
+        payload = request.model_dump()
 
         result = service.predict_from_dict(payload)
 

@@ -1,10 +1,8 @@
 import os
-import sys
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
 from data_pipeline import LoanDataPreparationPipeline
 
 raw_path = os.path.join(os.getcwd(), 'data', 'loan_dataset.csv')

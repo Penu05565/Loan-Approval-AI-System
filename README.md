@@ -158,6 +158,19 @@ LoanApprovalProject/
 -   JavaScript
 -   Pytest
 
+## Research Notebook
+
+See the lightweight research notebook for dataset exploration and reproducible notes: [notebooks/research.ipynb](notebooks/research.ipynb)
+
+## Linting
+
+A simple lint report placeholder is available at [lint-report.txt](lint-report.txt). To run a local lint check, install `ruff` or `flake8` and run, for example:
+
+```bash
+pip install ruff
+ruff check .
+```
+
 ## Setup
 
 ### Windows
@@ -178,6 +191,18 @@ source venv/bin/activate
 
 ``` bash
 pip install -r requirements.txt
+```
+
+### Run tests
+
+``` bash
+pytest -q
+```
+
+If you prefer, run the same command through Python:
+
+``` bash
+python -m pytest -q
 ```
 
 ## Run the Project
@@ -224,7 +249,8 @@ The interactive API docs are available at `/docs`.
 
 ### GET /
 
-Returns a JSON status payload and docs link.
+Returns the home page with the interactive user interface and links to
+API documentation.
 
 ### GET /health
 
@@ -268,7 +294,7 @@ Example response:
   "prediction": {
     "loan_id":"LP999999",
     "approved":true,
-    "approval_probability":0.9642,
+    "risk_probability":0.0358,
     "confidence":0.9642
   }
 }
@@ -346,11 +372,20 @@ This project follows key Software Engineering for Machine Learning (SE4ML) princ
 
 ### Testability
 - Unit tests validate pipeline stages and transformations
+- API contract checks validate runtime behavior
+
+### Research vs Production
+- Research experiments are separated from the production serving path
+- `tmp_model_test.py` compares RandomForest vs GradientBoosting for proof of concept
+- RandomForestClassifier was selected for production due to better validation F1 and generalization
+- Production artifacts are persisted so the online service loads the exact same preprocessing state and model
+- Deployment instructions distinguish between local development and production-ready startup using Uvicorn
 
 ### Test Coverage
 
 - Pipeline execution test (ensures full pipeline runs without failure)
-- Data preprocessing validation (checks transformations)
+- API endpoint tests (health check and prediction contract)
+- Data validation checks (LoanApplication and request payloads)
 - Feature consistency test (ensures correct feature output)
 
 ## Reproducibility
@@ -388,6 +423,14 @@ Prediction Service
       │
       ▼
 Machine Learning Model
+```
+
+## Linting
+
+A lightweight linting step helps maintain code quality. If `ruff` is installed, run:
+
+```bash
+ruff check .
 ```
 
 ## Future Enhancements

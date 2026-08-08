@@ -26,9 +26,7 @@ from pathlib import Path
 
 import joblib
 import pandas as pd
-from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import (
     accuracy_score,
     classification_report,
@@ -37,6 +35,7 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
 )
+from sklearn.model_selection import GridSearchCV
 
 DATA_DIR = Path("output")
 MODEL_DIR = Path("models")
@@ -61,21 +60,16 @@ def split_features_target(df: pd.DataFrame):
     return X, y, feature_cols
 
 
-# def train_model(X_train, y_train):
-#     # Gradient Boosting Classifier: matches the Algorithm element chosen in
-#     # the Analytics Design View. n_estimators/learning_rate/max_depth are
-#     # kept moderate to avoid overfitting on a ~390-row training set.
-#     model = GradientBoostingClassifier(
-#         n_estimators=500,
-#         learning_rate=0.05,
-#         max_depth=3,
-#         subsample=0.9,
-#         random_state=RANDOM_STATE,
-#     )
-#     model.fit(X_train, y_train)
-#     return model
-
 def train_model(X_train, y_train):
+    """
+    Trains a RandomForestClassifier via grid search.
+
+    Note: an earlier iteration of this project used a GradientBoostingClassifier
+    (matching the Algorithm element originally chosen in the Assignment I
+    Analytics Design View). RandomForest was selected instead after comparing
+    both on the validation split (see tmp_model_test.py for that exploratory
+    comparison) because it generalised better on this ~390-row training set.
+    """
     base_model = RandomForestClassifier(random_state=RANDOM_STATE)
 
     param_grid = {
@@ -102,6 +96,7 @@ def train_model(X_train, y_train):
 
     return grid.best_estimator_
 
+
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
 
@@ -120,13 +115,19 @@ def evaluate_model(model, X_test, y_test):
     print(f"Recall    : {metrics['recall']:.4f}")
     print(f"F1 Score  : {metrics['f1_score']:.4f}")
     print("\nClassification report:")
-    print(classification_report(y_test, y_pred, target_names=["Rejected (0)", "Approved (1)"]))
+    print(
+        classification_report(
+            y_test, y_pred, target_names=["Rejected (0)", "Approved (1)"]
+        )
+    )
     print("Confusion matrix:")
-    print(pd.DataFrame(
-        metrics["confusion_matrix"],
-        index=["Actual: Rejected", "Actual: Approved"],
-        columns=["Pred: Rejected", "Pred: Approved"],
-    ))
+    print(
+        pd.DataFrame(
+            metrics["confusion_matrix"],
+            index=["Actual: Rejected", "Actual: Approved"],
+            columns=["Pred: Rejected", "Pred: Approved"],
+        )
+    )
 
     return metrics
 
