@@ -8,6 +8,7 @@ Usage:
     python run_pipeline.py
 """
 
+import json
 import os
 
 from data_pipeline import LoanApplication, LoanDataPreparationPipeline
@@ -32,13 +33,49 @@ def main() -> None:
     result.train_df.to_csv(train_path, index=False)
     result.test_df.to_csv(test_path, index=False)
 
-    pipeline.save_artifacts(os.path.join(output_dir, "artifacts"))
+    artifacts_dir = os.path.join(output_dir, "artifacts")
+    pipeline.save_artifacts(artifacts_dir)
+
+    # --------------------------------------------------------------
+    # Persist the training-time LoanAmount median.
+    #
+    # predict.py's feature-engineering step (income_loan_ratio,
+    # loan_per_income, is_high_loan) needs the SAME LoanAmount median
+    # that was used during training. Recomputing it from a single
+    # incoming request row at inference time is wrong (the "median"
+    # of one row is just that row's own value) and causes train/serve
+    # skew. Saving it here, once, as a fitted artifact fixes that.
+    #
+    # NOTE: if `LoanDataPreparationPipeline` already exposes a fitted
+    # missing_value_handler (the way it exposes `feature_selector`
+    # below), use that to transform the raw training data first, so
+    # this median is computed on the exact same missing-value-handled
+    # data predict.py's feature-engineering step will see:
+    #
+    #   raw_df = pd.read_csv(data_path)
+    #   handled_df = pipeline.missing_value_handler.transform(raw_df)
+    #   loan_amount_median = float(handled_df["LoanAmount"].median())
+    #
+    # If that attribute isn't exposed, computing it from the raw
+    # source CSV (as below) is a reasonable approximation, since
+    # missing-value handling typically doesn't shift the median much.
+    # --------------------------------------------------------------
+    import pandas as pd
+
+    raw_df = pd.read_csv(data_path)
+    loan_amount_median = float(raw_df["LoanAmount"].median())
+
+    stats_path = os.path.join(artifacts_dir, "feature_engineering_stats.json")
+    with open(stats_path, "w") as f:
+        json.dump({"loan_amount_median": loan_amount_median}, f, indent=2)
 
     print("\n--- Pipeline summary ---")
     print("Selected features:", pipeline.feature_selector.selected_columns)
     print(result.summary())
     print(f"Training dataset written to: {train_path}")
-    print(f"Testing dataset written to:  {test_path}")
+    print(f"Testing dataset written to: {test_path}")
+    print(f"Feature engineering stats written to: {stats_path}")
+    print(f"  loan_amount_median = {loan_amount_median}")
 
     # --- Demonstrates reuse for a single new application (serving path) ---
     print("\n--- Single-record inference-path demo ---")

@@ -520,3 +520,24 @@ AttributeError: 'SimpleImputer' object has no attribute '_fill_dtype'. Did you m
 2026-08-08 18:00:25,147 | Predict request payload: {'loan_id': 'LPTEST123', 'gender': 'Female', 'married': 'Yes', 'dependents': '0', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 4000, 'coapplicant_income': 0, 'loan_amount': 100, 'loan_amount_term': 360, 'credit_history': 1.0, 'property_area': 'Urban'}
 2026-08-08 18:00:25,158 | FeatureSelector: selected top features -> shape=(1, 13)
 2026-08-08 18:00:25,168 | Prediction result: LoanID=LPTEST123 Approved=True Prob=0.3790 Conf=0.6210
+2026-08-08 18:31:36,790 | HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-08-08 18:31:36,804 | Predict request payload: {'loan_id': 'LP999999', 'gender': 'Female', 'married': 'Yes', 'dependents': '1', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 5200.0, 'coapplicant_income': 1500.0, 'loan_amount': 110.0, 'loan_amount_term': 360.0, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-08 18:31:36,881 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 18:31:36,898 | Prediction result: LoanID=LP999999 Approved=True Prob=0.4385 Conf=0.5615
+2026-08-08 18:31:36,898 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-08 18:31:36,898 | HTTP Request: POST http://testserver/predict "HTTP/1.1 200 OK"
+2026-08-08 18:31:36,898 | === Loan Data Preparation Pipeline: START ===
+2026-08-08 18:31:36,898 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-08 18:31:36,898 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-08 18:31:36,915 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-08 18:31:36,915 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-08 18:31:36,915 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-08 18:31:36,915 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-08 18:31:36,931 | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-08 18:31:36,931 | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-08 18:31:36,931 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-08 18:31:36,931 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-08 18:31:36,950 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 18:31:37,015 | Predict request payload: {'loan_id': 'LPTEST123', 'gender': 'Female', 'married': 'Yes', 'dependents': '0', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 4000, 'coapplicant_income': 0, 'loan_amount': 100, 'loan_amount_term': 360, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-08 18:31:37,015 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 18:31:37,031 | Prediction result: LoanID=LPTEST123 Approved=True Prob=0.3790 Conf=0.6210

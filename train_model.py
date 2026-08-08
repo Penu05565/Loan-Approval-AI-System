@@ -43,7 +43,6 @@ MODEL_DIR.mkdir(exist_ok=True)
 
 TARGET_COL = "Loan_Status"
 ID_COL = "Loan_ID"
-
 RANDOM_STATE = 42
 
 
@@ -67,8 +66,9 @@ def train_model(X_train, y_train):
     Note: an earlier iteration of this project used a GradientBoostingClassifier
     (matching the Algorithm element originally chosen in the Assignment I
     Analytics Design View). RandomForest was selected instead after comparing
-    both on the validation split (see tmp_model_test.py for that exploratory
-    comparison) because it generalised better on this ~390-row training set.
+    both on the validation split (see tests/ for that exploratory comparison,
+    formerly tmp_model_test.py) because it generalised better on this ~390-row
+    training set.
     """
     base_model = RandomForestClassifier(random_state=RANDOM_STATE)
 
@@ -89,11 +89,9 @@ def train_model(X_train, y_train):
         n_jobs=-1,
         verbose=1,
     )
-
     grid.fit(X_train, y_train)
 
     print("Best Params:", grid.best_params_)
-
     return grid.best_estimator_
 
 
@@ -114,12 +112,14 @@ def evaluate_model(model, X_test, y_test):
     print(f"Precision : {metrics['precision']:.4f}")
     print(f"Recall    : {metrics['recall']:.4f}")
     print(f"F1 Score  : {metrics['f1_score']:.4f}")
+
     print("\nClassification report:")
     print(
         classification_report(
             y_test, y_pred, target_names=["Rejected (0)", "Approved (1)"]
         )
     )
+
     print("Confusion matrix:")
     print(
         pd.DataFrame(
@@ -142,6 +142,7 @@ def check_success_criteria(metrics: dict):
         "recall": 0.85,
         "f1_score": 0.87,
     }
+
     print("\n=== Success Criteria Check ===")
     all_met = True
     for key, target in targets.items():
@@ -149,7 +150,8 @@ def check_success_criteria(metrics: dict):
         met = achieved >= target
         all_met = all_met and met
         status = "PASS" if met else "FAIL"
-        print(f"{key:10s}: {achieved:.4f}  (target >= {target:.2f})  [{status}]")
+        print(f"{key:10s}: {achieved:.4f} (target >= {target:.2f}) [{status}]")
+
     if not all_met:
         print(
             "\nNote: not all targets met. Consider hyperparameter tuning, "
@@ -157,6 +159,7 @@ def check_success_criteria(metrics: dict):
             "LogisticRegression), or revisiting feature engineering before "
             "finalizing the model for deployment."
         )
+
     return all_met
 
 
@@ -183,6 +186,7 @@ def main():
     # Persist artifacts
     joblib.dump(model, MODEL_DIR / "loan_model.pkl")
     joblib.dump(feature_cols, MODEL_DIR / "feature_columns.pkl")
+
     metrics["training_time_seconds"] = round(time.time() - start, 2)
     with open(MODEL_DIR / "metrics.json", "w") as f:
         json.dump(metrics, f, indent=2)

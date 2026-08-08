@@ -24,6 +24,7 @@ Usage:
 
 from __future__ import annotations
 
+import json
 import os
 from dataclasses import dataclass
 
@@ -65,14 +66,10 @@ class LoanPredictionService:
     singleton in the API app) rather than per-request, since loading
     joblib artifacts repeatedly would add unnecessary latency.
     """
-
-    def __init__(
-        self,
-        artifacts_dir: str = ARTIFACTS_DIR,
-        models_dir: str = MODELS_DIR,
-    ) -> None:
+    
+    def __init__(self, artifacts_dir: str = ARTIFACTS_DIR, models_dir: str = MODELS_DIR) -> None:
         self.logger = get_logger(__name__)
-        # --- Fitted data preparation filters (order matters, see module docstring) ---
+
         self.missing_value_handler = PipelineStage.load(
             os.path.join(artifacts_dir, "missing_value_handler.joblib")
         )
@@ -86,24 +83,25 @@ class LoanPredictionService:
             os.path.join(artifacts_dir, "feature_selector.joblib")
         )
 
-        # --- Trained model + the exact column order it was trained on ---
+        stats_path = os.path.join(artifacts_dir, "feature_engineering_stats.json")
+        with open(stats_path) as f:
+            stats = json.load(f)
+        self.loan_amount_median = stats["loan_amount_median"]
+
         self.model = joblib.load(os.path.join(models_dir, "loan_model.pkl"))
-        self.feature_columns = joblib.load(
-            os.path.join(models_dir, "feature_columns.pkl")
-        )
+        self.feature_columns = joblib.load(os.path.join(models_dir, "feature_columns.pkl"))
 
     def _feature_engineering(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Create the same engineered features used during training."""
         df = df.copy()
         df["total_income"] = df["ApplicantIncome"] + df["CoapplicantIncome"]
-        df["income_loan_ratio"] = df["total_income"] / (
-            df["LoanAmount"].fillna(df["LoanAmount"].median()) + 1
-        )
-        df["loan_per_income"] = df["LoanAmount"].fillna(df["LoanAmount"].median()) / (
-            df["total_income"] + 1
-        )
-        df["is_high_loan"] = (df["LoanAmount"] > df["LoanAmount"].median()).astype(int)
+
+        loan_amount_filled = df["LoanAmount"].fillna(self.loan_amount_median)
+
+        df["income_loan_ratio"] = df["total_income"] / (loan_amount_filled + 1)
+        df["loan_per_income"] = loan_amount_filled / (df["total_income"] + 1)
+        df["is_high_loan"] = (df["LoanAmount"] > self.loan_amount_median).astype(int)
         return df
+    
 
     def _prepare(self, raw_row: pd.DataFrame) -> pd.DataFrame:
         """Runs a single raw application row through the fitted filter chain."""

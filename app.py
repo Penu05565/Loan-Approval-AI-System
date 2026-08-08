@@ -143,7 +143,10 @@ def predict(request: LoanRequest):
 
     except Exception as ex:
         logging.exception("Prediction failed")
-        raise HTTPException(status_code=500, detail=str(ex))
+        raise HTTPException(
+        status_code=500,
+        detail="An internal error occurred while processing the prediction. Please try again.",
+    )
 
 
 # --------------------------------------------------------------------
