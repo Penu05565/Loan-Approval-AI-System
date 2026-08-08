@@ -36,9 +36,12 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 from data_pipeline.base import PipelineStage  # noqa: E402
 from data_pipeline import LoanApplication  # noqa: E402
 
-BASE_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 ARTIFACTS_DIR = os.path.join(BASE_DIR, "output", "artifacts")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
+
+sys.path.insert(0, os.path.join(BASE_DIR, "src"))
 
 
 @dataclass
