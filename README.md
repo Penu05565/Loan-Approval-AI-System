@@ -106,11 +106,16 @@ Features:
 LoanApprovalProject/
 │
 ├── app.py
+├── config.py
 ├── run_pipeline.py
 ├── train_model.py
 ├── predict.py
 ├── README.md
 ├── requirements.txt
+├── liny-report.txt
+├── pytest.ini
+├── runtime.txt
+├── .render.yaml
 │
 ├── data/
 |   ├── loan_dataset.csv
@@ -122,6 +127,7 @@ LoanApprovalProject/
 |   ├── test_dataset.csv
 |   ├── train_dataset.csv
 ├── logs/
+|   ├── pipeline.log
 |   ├── predictions.log
 ├── static/
 │   ├── style.css
@@ -129,7 +135,11 @@ LoanApprovalProject/
 ├── templates/
 │   └── index.html
 ├── tests/
+│   └── conftest.py
 │   └── test_pipeline.py
+│   └── test_api.py
+│   └── test_predict.py
+│   └── test_training_inferenece_quality.py
 ├── venv
 └── data_pipeline/
     ├── schema.py                # Data Model: column contract + LoanApplication entity
@@ -141,7 +151,7 @@ LoanApprovalProject/
     ├── feature_scaler.py        # Filter 5
     ├── feature_selector.py      # Filter 6
     ├── train_test_splitter.py   # Filter 7 (fans out into train/test)
-    └── pipeline.py               # Orchestrator wiring all filters together
+    └── pipeline.py              # Orchestrator wiring all filters together
 ```
 
 ## Technologies
