@@ -91,9 +91,23 @@ class LoanPredictionService:
             os.path.join(models_dir, "feature_columns.pkl")
         )
 
+    def _feature_engineering(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Create the same engineered features used during training."""
+        df = df.copy()
+        df["total_income"] = df["ApplicantIncome"] + df["CoapplicantIncome"]
+        df["income_loan_ratio"] = df["total_income"] / (
+            df["LoanAmount"].fillna(df["LoanAmount"].median()) + 1
+        )
+        df["loan_per_income"] = df["LoanAmount"].fillna(df["LoanAmount"].median()) / (
+            df["total_income"] + 1
+        )
+        df["is_high_loan"] = (df["LoanAmount"] > df["LoanAmount"].median()).astype(int)
+        return df
+
     def _prepare(self, raw_row: pd.DataFrame) -> pd.DataFrame:
         """Runs a single raw application row through the fitted filter chain."""
         df = self.missing_value_handler.transform(raw_row)
+        df = self._feature_engineering(df)
         df = self.categorical_encoder.transform(df)
         df = self.feature_scaler.transform(df)
         df = self.feature_selector.transform(df)

@@ -30,7 +30,10 @@ import os
 from datetime import datetime
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
 from predict import LoanPredictionService
@@ -49,6 +52,9 @@ app = FastAPI(
 # --------------------------------------------------------------------
 # Load prediction service ONCE
 # --------------------------------------------------------------------
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 service = LoanPredictionService()
 
@@ -88,12 +94,9 @@ class LoanRequest(BaseModel):
 # Home
 # --------------------------------------------------------------------
 
-@app.get("/")
-def home():
-    return {
-        "message": "Loan Approval Prediction API is running",
-        "docs": "/docs"
-    }
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 # --------------------------------------------------------------------

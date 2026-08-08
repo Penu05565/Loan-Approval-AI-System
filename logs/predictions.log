@@ -255,3 +255,127 @@
 2026-07-06 21:12:38,979 | 127.0.0.1 - - [06/Jul/2026 21:12:38] "POST /predict HTTP/1.1" 200 -
 2026-08-08 00:16:38,970 | FeatureSelector: selected top features -> shape=(1, 13)
 2026-08-08 00:16:38,975 | LoanID=LP001 | Approved=True | Probability=0.0665 | Confidence=0.9335
+2026-08-08 14:11:04,047 | Prediction failed
+Traceback (most recent call last):
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\app.py", line 126, in predict
+    result = service.predict_from_dict(payload)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 152, in predict_from_dict
+    return self.predict(application)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 133, in predict
+    prepared = self._prepare(raw_row)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 109, in _prepare
+    df = self.missing_value_handler.transform(raw_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\data_pipeline\missing_value_handler.py", line 49, in transform
+    df[schema.NUMERICAL_FEATURES] = self._numeric_imputer.transform(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 319, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\impute\_base.py", line 638, in transform
+    self._fill_dtype, copy=False
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'SimpleImputer' object has no attribute '_fill_dtype'. Did you mean: '_fit_dtype'?
+2026-08-08 14:13:58,600 | Prediction failed
+Traceback (most recent call last):
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\app.py", line 126, in predict
+    result = service.predict_from_dict(payload)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 152, in predict_from_dict
+    return self.predict(application)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 133, in predict
+    prepared = self._prepare(raw_row)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 109, in _prepare
+    df = self.missing_value_handler.transform(raw_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\data_pipeline\missing_value_handler.py", line 49, in transform
+    df[schema.NUMERICAL_FEATURES] = self._numeric_imputer.transform(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 319, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\impute\_base.py", line 638, in transform
+    self._fill_dtype, copy=False
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'SimpleImputer' object has no attribute '_fill_dtype'. Did you mean: '_fit_dtype'?
+2026-08-08 14:17:03,698 | Prediction failed
+Traceback (most recent call last):
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\app.py", line 126, in predict
+    result = service.predict_from_dict(payload)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 152, in predict_from_dict
+    return self.predict(application)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 133, in predict
+    prepared = self._prepare(raw_row)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 109, in _prepare
+    df = self.missing_value_handler.transform(raw_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\data_pipeline\missing_value_handler.py", line 49, in transform
+    df[schema.NUMERICAL_FEATURES] = self._numeric_imputer.transform(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 319, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\impute\_base.py", line 638, in transform
+    self._fill_dtype, copy=False
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'SimpleImputer' object has no attribute '_fill_dtype'. Did you mean: '_fit_dtype'?
+2026-08-08 14:26:11,875 | Prediction failed
+Traceback (most recent call last):
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\app.py", line 126, in predict
+    result = service.predict_from_dict(payload)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 152, in predict_from_dict
+    return self.predict(application)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 133, in predict
+    prepared = self._prepare(raw_row)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 109, in _prepare
+    df = self.missing_value_handler.transform(raw_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\data_pipeline\missing_value_handler.py", line 49, in transform
+    df[schema.NUMERICAL_FEATURES] = self._numeric_imputer.transform(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 319, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\impute\_base.py", line 638, in transform
+    self._fill_dtype, copy=False
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'SimpleImputer' object has no attribute '_fill_dtype'. Did you mean: '_fit_dtype'?
+2026-08-08 14:28:06,083 | Prediction failed
+Traceback (most recent call last):
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\app.py", line 126, in predict
+    result = service.predict_from_dict(payload)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 152, in predict_from_dict
+    return self.predict(application)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 133, in predict
+    prepared = self._prepare(raw_row)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\predict.py", line 109, in _prepare
+    df = self.missing_value_handler.transform(raw_row)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\data_pipeline\missing_value_handler.py", line 49, in transform
+    df[schema.NUMERICAL_FEATURES] = self._numeric_imputer.transform(
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\utils\_set_output.py", line 319, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Thanmayee PV\AI-Powered-Loan-Approval-Risk-Prediction-System\venv\Lib\site-packages\sklearn\impute\_base.py", line 638, in transform
+    self._fill_dtype, copy=False
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'SimpleImputer' object has no attribute '_fill_dtype'. Did you mean: '_fit_dtype'?
+2026-08-08 14:45:12,909 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 14:45:12,920 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-08 14:53:28,506 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-08 14:53:28,542 | LoanID=123456679 | Approved=False | Probability=0.6706 | Confidence=0.6706

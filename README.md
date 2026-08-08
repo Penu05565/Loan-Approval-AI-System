@@ -289,6 +289,24 @@ output/artifacts/
     feature_selector.joblib
 ```
 
+## Model Evaluation
+
+The model was evaluated using multiple performance metrics as required by the assignment.
+
+- **Accuracy (~85%)**  
+  Measures overall correctness of predictions.
+
+- **Precision**  
+  Indicates how many predicted approvals were actually correct.
+
+- **Recall**  
+  Measures how many actual approvals were correctly identified.
+
+- **F1-Score (~0.90)**  
+  Provides a balance between precision and recall.
+
+These metrics demonstrate that the model performs reliably and maintains a good balance between false positives and false negatives.
+
 ## Logging
 
 Prediction logs are stored in:
@@ -299,6 +317,57 @@ logs/predictions.log
 
 Each entry records timestamp, loan ID, prediction, probability, and
 confidence.
+
+## Testing
+
+Unit testing is implemented using **Pytest** to ensure correctness and reliability of the pipeline.
+
+### Run Tests
+
+```bash
+pytest
+```
+
+## Software Engineering Practices
+
+This project follows key Software Engineering for Machine Learning (SE4ML) principles:
+
+### Modularity
+- Each pipeline stage is implemented as an independent module
+- Components such as preprocessing, training, and prediction are decoupled
+
+### Maintainability
+- Clean project structure with separation of concerns
+- Reusable pipeline components
+
+### Reproducibility
+- Consistent pipeline execution from raw data to prediction
+- Saved artifacts ensure repeatable results
+
+### Testability
+- Unit tests validate pipeline stages and transformations
+
+### Test Coverage
+
+- Pipeline execution test (ensures full pipeline runs without failure)
+- Data preprocessing validation (checks transformations)
+- Feature consistency test (ensures correct feature output)
+
+## Reproducibility
+
+The system ensures reproducibility by:
+
+- Using a fixed pipeline for all transformations
+- Saving trained models and preprocessing artifacts
+- Allowing re-execution of the pipeline and training scripts
+
+Steps:
+1. Run pipeline: `python run_pipeline.py`
+2. Train model: `python train_model.py`
+3. Start API: `uvicorn app:app --reload`
+
+### Logging
+- Prediction outputs are logged for traceability and debugging
 
 ## Architectural Patterns
 
