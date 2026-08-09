@@ -23,4 +23,3 @@ def test_pipeline_runs_and_splits():
     assert set(result.train_df.columns) == set(result.test_df.columns)
     split_fraction = len(result.test_df) / (len(result.train_df) + len(result.test_df))
     assert 0.1 < split_fraction < 0.3
-

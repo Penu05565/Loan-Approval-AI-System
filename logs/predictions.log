@@ -541,3 +541,81 @@ AttributeError: 'SimpleImputer' object has no attribute '_fill_dtype'. Did you m
 2026-08-08 18:31:37,015 | Predict request payload: {'loan_id': 'LPTEST123', 'gender': 'Female', 'married': 'Yes', 'dependents': '0', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 4000, 'coapplicant_income': 0, 'loan_amount': 100, 'loan_amount_term': 360, 'credit_history': 1.0, 'property_area': 'Urban'}
 2026-08-08 18:31:37,015 | FeatureSelector: selected top features -> shape=(1, 13)
 2026-08-08 18:31:37,031 | Prediction result: LoanID=LPTEST123 Approved=True Prob=0.3790 Conf=0.6210
+2026-08-09 13:23:37,795 | INFO | HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-08-09 13:23:37,803 | INFO | Predict request payload: {'loan_id': 'LP999999', 'gender': 'Female', 'married': 'Yes', 'dependents': '1', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 5200.0, 'coapplicant_income': 1500.0, 'loan_amount': 110.0, 'loan_amount_term': 360.0, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-09 13:23:37,846 | INFO | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 13:23:37,862 | INFO | Prediction result: LoanID=LP999999 Approved=True Prob=0.4385 Conf=0.5615
+2026-08-09 13:23:37,862 | INFO | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-09 13:23:37,862 | INFO | HTTP Request: POST http://testserver/predict "HTTP/1.1 200 OK"
+2026-08-09 13:23:37,951 | INFO | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 13:23:37,981 | INFO | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 13:23:38,012 | INFO | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 13:23:38,029 | INFO | === Loan Data Preparation Pipeline: START ===
+2026-08-09 13:23:38,029 | INFO | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-09 13:23:38,029 | INFO | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-09 13:23:38,046 | INFO | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-09 13:23:38,052 | INFO | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-09 13:23:38,058 | INFO | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-09 13:23:38,066 | INFO | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-09 13:23:38,066 | INFO | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-09 13:23:38,077 | INFO | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-09 13:23:38,079 | INFO | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-09 13:23:38,079 | INFO | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-09 13:23:38,109 | INFO | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 13:23:38,227 | INFO | Predict request payload: {'loan_id': 'LPTEST123', 'gender': 'Female', 'married': 'Yes', 'dependents': '0', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 4000, 'coapplicant_income': 0, 'loan_amount': 100, 'loan_amount_term': 360, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-09 13:23:38,230 | INFO | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 13:23:38,246 | INFO | Prediction result: LoanID=LPTEST123 Approved=True Prob=0.3790 Conf=0.6210
+2026-08-09 14:00:34,455 | HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-08-09 14:00:34,463 | Predict request payload: {'loan_id': 'LP999999', 'gender': 'Female', 'married': 'Yes', 'dependents': '1', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 5200.0, 'coapplicant_income': 1500.0, 'loan_amount': 110.0, 'loan_amount_term': 360.0, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-09 14:00:34,496 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,508 | Prediction result: LoanID=LP999999 Approved=True Prob=0.4385 Conf=0.5615
+2026-08-09 14:00:34,508 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-09 14:00:34,508 | HTTP Request: POST http://testserver/predict "HTTP/1.1 200 OK"
+2026-08-09 14:00:34,546 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,554 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,585 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,613 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,635 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,658 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,819 | === Loan Data Preparation Pipeline: START ===
+2026-08-09 14:00:34,824 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-09 14:00:34,824 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-09 14:00:34,833 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-09 14:00:34,837 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-09 14:00:34,837 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-09 14:00:34,849 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-09 14:00:34,855 | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-09 14:00:34,855 | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-09 14:00:34,859 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-09 14:00:34,859 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-09 14:00:34,889 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,963 | Predict request payload: {'loan_id': 'LPTEST123', 'gender': 'Female', 'married': 'Yes', 'dependents': '0', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 4000, 'coapplicant_income': 0, 'loan_amount': 100, 'loan_amount_term': 360, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-09 14:00:34,976 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:00:34,991 | Prediction result: LoanID=LPTEST123 Approved=True Prob=0.3790 Conf=0.6210
+2026-08-09 14:50:34,902 | HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2026-08-09 14:50:34,920 | Predict request payload: {'loan_id': 'LP999999', 'gender': 'Female', 'married': 'Yes', 'dependents': '1', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 5200.0, 'coapplicant_income': 1500.0, 'loan_amount': 110.0, 'loan_amount_term': 360.0, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-09 14:50:34,965 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:34,972 | Prediction result: LoanID=LP999999 Approved=True Prob=0.4385 Conf=0.5615
+2026-08-09 14:50:34,972 | LoanID=LP999999 | Approved=True | Probability=0.4385 | Confidence=0.5615
+2026-08-09 14:50:34,975 | HTTP Request: POST http://testserver/predict "HTTP/1.1 200 OK"
+2026-08-09 14:50:34,996 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:35,010 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:35,029 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:35,043 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:35,064 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:35,080 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:35,163 | === Loan Data Preparation Pipeline: START ===
+2026-08-09 14:50:35,163 | DataCollector: collected raw data -> shape=(491, 13)
+2026-08-09 14:50:35,175 | DataCollector: target distribution -> {1: 0.699, 0: 0.301}
+2026-08-09 14:50:35,182 | MissingValueHandler: imputed missing values -> shape=(491, 13)
+2026-08-09 14:50:35,182 | DuplicateRemover: removed 0 duplicate row(s) -> shape=(491, 17)
+2026-08-09 14:50:35,182 | CategoricalEncoder: one-hot encoded categorical features -> shape=(491, 22)
+2026-08-09 14:50:35,194 | FeatureScaler: scaled numerical features -> shape=(491, 22)
+2026-08-09 14:50:35,196 | FeatureSelector: selected 12 features -> ['CoapplicantIncome', 'Credit_History', 'income_loan_ratio', 'loan_per_income', 'Gender_Male', 'Married_Yes', 'Dependents_1', 'Dependents_2', 'Dependents_3+', 'Education_Not Graduate', 'Property_Area_Rural', 'Property_Area_Semiurban']
+2026-08-09 14:50:35,196 | FeatureSelector: selected top features -> shape=(491, 14)
+2026-08-09 14:50:35,196 | TrainTestSplitter: {'train_rows': 392, 'test_rows': 99, 'train_positive_rate': 0.699, 'test_positive_rate': 0.697}
+2026-08-09 14:50:35,196 | === Loan Data Preparation Pipeline: COMPLETE ===
+2026-08-09 14:50:35,225 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:35,269 | Predict request payload: {'loan_id': 'LPTEST123', 'gender': 'Female', 'married': 'Yes', 'dependents': '0', 'education': 'Graduate', 'self_employed': 'No', 'applicant_income': 4000, 'coapplicant_income': 0, 'loan_amount': 100, 'loan_amount_term': 360, 'credit_history': 1.0, 'property_area': 'Urban'}
+2026-08-09 14:50:35,277 | FeatureSelector: selected top features -> shape=(1, 13)
+2026-08-09 14:50:35,279 | Prediction result: LoanID=LPTEST123 Approved=True Prob=0.3790 Conf=0.6210

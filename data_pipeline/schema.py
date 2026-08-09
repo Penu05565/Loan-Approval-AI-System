@@ -21,8 +21,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Optional
-import pandas as pd
 
+import pandas as pd
 
 # --------------------------------------------------------------------------- #
 # Column contract — the ONE place column names/types are declared.
@@ -66,6 +66,7 @@ def raw_dtypes() -> dict[str, str]:
 # --------------------------------------------------------------------------- #
 # Domain entity — typed record for a single loan application.
 # --------------------------------------------------------------------------- #
+
 
 @dataclass
 class LoanApplication:

@@ -112,7 +112,7 @@ LoanApprovalProject/
 ├── predict.py
 ├── README.md
 ├── requirements.txt
-├── liny-report.txt
+├── lint-report.txt
 ├── pytest.ini
 ├── runtime.txt
 ├── .render.yaml
@@ -139,7 +139,7 @@ LoanApprovalProject/
 │   └── test_pipeline.py
 │   └── test_api.py
 │   └── test_predict.py
-│   └── test_training_inferenece_quality.py
+│   └── test_training_inference_quality.py
 ├── venv
 └── data_pipeline/
     ├── schema.py                # Data Model: column contract + LoanApplication entity
@@ -364,6 +364,24 @@ Unit testing is implemented using **Pytest** to ensure correctness and reliabili
 pytest
 ```
 
+## Code Quality & Formatting
+
+This project follows standard Python formatting and linting practices.
+
+### Tools Used
+
+- **Black** – code formatter
+- **isort** – import sorting
+- **Flake8** – linting
+
+### Run Checks
+
+```bash
+python -m isort --check-only .
+python -m black --check .
+python -m flake8 .
+```
+
 ## Software Engineering Practices
 
 This project follows key Software Engineering for Machine Learning (SE4ML) principles:
@@ -434,15 +452,6 @@ Prediction Service
       ▼
 Machine Learning Model
 ```
-
-## Linting
-
-A lightweight linting step helps maintain code quality. If `ruff` is installed, run:
-
-```bash
-ruff check .
-```
-
 ## Future Enhancements
 
 -   Docker deployment

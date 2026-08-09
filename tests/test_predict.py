@@ -28,9 +28,10 @@ def test_prediction_service_handles_valid_request() -> None:
 
 
 def test_prediction_service_rejects_invalid_credit_history() -> None:
-    service = LoanPredictionService()
+    # Validation happens in LoanApplication.__post_init__ itself, so this
+    # test doesn't need a LoanPredictionService instance at all.
     try:
-        application = LoanApplication(
+        LoanApplication(
             loan_id="LP999998",
             gender="Female",
             married="Yes",

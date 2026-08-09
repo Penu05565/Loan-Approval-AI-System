@@ -21,6 +21,7 @@ Output:
 """
 
 import json
+import logging
 import time
 from pathlib import Path
 
@@ -36,6 +37,12 @@ from sklearn.metrics import (
     recall_score,
 )
 from sklearn.model_selection import GridSearchCV
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 DATA_DIR = Path("output")
 MODEL_DIR = Path("models")
@@ -66,9 +73,9 @@ def train_model(X_train, y_train):
     Note: an earlier iteration of this project used a GradientBoostingClassifier
     (matching the Algorithm element originally chosen in the Assignment I
     Analytics Design View). RandomForest was selected instead after comparing
-    both on the validation split (see tests/ for that exploratory comparison,
-    formerly tmp_model_test.py) because it generalised better on this ~390-row
-    training set.
+    both on the validation split (see notebooks/model_exploration.ipynb for
+    that exploratory comparison) because it generalised better on this
+    ~390-row training set.
     """
     base_model = RandomForestClassifier(random_state=RANDOM_STATE)
 
@@ -91,7 +98,7 @@ def train_model(X_train, y_train):
     )
     grid.fit(X_train, y_train)
 
-    print("Best Params:", grid.best_params_)
+    logger.info("Best Params: %s", grid.best_params_)
     return grid.best_estimator_
 
 
@@ -107,26 +114,25 @@ def evaluate_model(model, X_test, y_test):
         "test_samples": int(len(y_test)),
     }
 
-    print("\n=== Model Evaluation ===")
-    print(f"Accuracy  : {metrics['accuracy']:.4f}")
-    print(f"Precision : {metrics['precision']:.4f}")
-    print(f"Recall    : {metrics['recall']:.4f}")
-    print(f"F1 Score  : {metrics['f1_score']:.4f}")
+    logger.info("=== Model Evaluation ===")
+    logger.info("Accuracy  : %.4f", metrics["accuracy"])
+    logger.info("Precision : %.4f", metrics["precision"])
+    logger.info("Recall    : %.4f", metrics["recall"])
+    logger.info("F1 Score  : %.4f", metrics["f1_score"])
 
-    print("\nClassification report:")
-    print(
+    logger.info(
+        "Classification report:\n%s",
         classification_report(
             y_test, y_pred, target_names=["Rejected (0)", "Approved (1)"]
-        )
+        ),
     )
-
-    print("Confusion matrix:")
-    print(
+    logger.info(
+        "Confusion matrix:\n%s",
         pd.DataFrame(
             metrics["confusion_matrix"],
             index=["Actual: Rejected", "Actual: Approved"],
             columns=["Pred: Rejected", "Pred: Approved"],
-        )
+        ),
     )
 
     return metrics
@@ -134,8 +140,8 @@ def evaluate_model(model, X_test, y_test):
 
 def check_success_criteria(metrics: dict):
     # Targets pulled directly from the report's Success Criteria table
-    # (Section 3.5 / NFR-01) so the console output doubles as evidence
-    # for the assignment writeup.
+    # so the log output doubles as evidence for the
+    # assignment writeup.
     targets = {
         "accuracy": 0.85,
         "precision": 0.88,
@@ -143,58 +149,63 @@ def check_success_criteria(metrics: dict):
         "f1_score": 0.87,
     }
 
-    print("\n=== Success Criteria Check ===")
+    logger.info("=== Success Criteria Check ===")
     all_met = True
     for key, target in targets.items():
         achieved = metrics[key]
         met = achieved >= target
         all_met = all_met and met
         status = "PASS" if met else "FAIL"
-        print(f"{key:10s}: {achieved:.4f} (target >= {target:.2f}) [{status}]")
+        logger.info("%-10s: %.4f (target >= %.2f) [%s]", key, achieved, target, status)
 
     if not all_met:
-        print(
-            "\nNote: not all targets met. Consider hyperparameter tuning, "
-            "trying an alternative algorithm (e.g. RandomForest / "
-            "LogisticRegression), or revisiting feature engineering before "
-            "finalizing the model for deployment."
+        logger.warning(
+            "Not all success criteria targets met: %s. Consider hyperparameter "
+            "tuning, trying an alternative algorithm, or revisiting feature "
+            "engineering before finalizing the model for deployment.",
+            targets,
         )
 
     return all_met
 
 
 def main():
-    start = time.time()
+    try:
+        start = time.time()
 
-    train_df, test_df = load_data()
-    X_train, y_train, feature_cols = split_features_target(train_df)
-    X_test, y_test, _ = split_features_target(test_df)
+        train_df, test_df = load_data()
+        X_train, y_train, feature_cols = split_features_target(train_df)
+        X_test, y_test, _ = split_features_target(test_df)
 
-    # Guard against column mismatch between train and test sets
-    assert list(X_train.columns) == list(X_test.columns), (
-        "Train/test feature columns do not match. Check the data "
-        "preparation module output."
-    )
+        # Guard against column mismatch between train and test sets
+        assert list(X_train.columns) == list(X_test.columns), (
+            "Train/test feature columns do not match. Check the data "
+            "preparation module output."
+        )
 
-    print(f"Training samples: {len(X_train)}, Test samples: {len(X_test)}")
-    print(f"Feature columns ({len(feature_cols)}): {feature_cols}")
+        logger.info("Training samples: %d, Test samples: %d", len(X_train), len(X_test))
+        logger.info("Feature columns (%d): %s", len(feature_cols), feature_cols)
 
-    model = train_model(X_train, y_train)
-    metrics = evaluate_model(model, X_test, y_test)
-    check_success_criteria(metrics)
+        model = train_model(X_train, y_train)
+        metrics = evaluate_model(model, X_test, y_test)
+        check_success_criteria(metrics)
 
-    # Persist artifacts
-    joblib.dump(model, MODEL_DIR / "loan_model.pkl")
-    joblib.dump(feature_cols, MODEL_DIR / "feature_columns.pkl")
+        # Persist artifacts
+        joblib.dump(model, MODEL_DIR / "loan_model.pkl")
+        joblib.dump(feature_cols, MODEL_DIR / "feature_columns.pkl")
 
-    metrics["training_time_seconds"] = round(time.time() - start, 2)
-    with open(MODEL_DIR / "metrics.json", "w") as f:
-        json.dump(metrics, f, indent=2)
+        metrics["training_time_seconds"] = round(time.time() - start, 2)
+        with open(MODEL_DIR / "metrics.json", "w") as f:
+            json.dump(metrics, f, indent=2)
 
-    print(f"\nSaved model to {MODEL_DIR / 'loan_model.pkl'}")
-    print(f"Saved feature columns to {MODEL_DIR / 'feature_columns.pkl'}")
-    print(f"Saved metrics to {MODEL_DIR / 'metrics.json'}")
-    print(f"Total time: {metrics['training_time_seconds']}s")
+        logger.info("Saved model to %s", MODEL_DIR / "loan_model.pkl")
+        logger.info("Saved feature columns to %s", MODEL_DIR / "feature_columns.pkl")
+        logger.info("Saved metrics to %s", MODEL_DIR / "metrics.json")
+        logger.info("Total time: %ss", metrics["training_time_seconds"])
+
+    except Exception:
+        logger.error("Training pipeline failed", exc_info=True)
+        raise
 
 
 if __name__ == "__main__":

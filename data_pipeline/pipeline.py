@@ -19,19 +19,19 @@ DataCollector or TrainTestSplitter at all).
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import os
+from dataclasses import dataclass, field
 
 import pandas as pd
 
 from .base import logger
-from .data_collection import DataCollector
-from .missing_value_handler import MissingValueHandler
-from .duplicate_remover import DuplicateRemover
 from .categorical_encoder import CategoricalEncoder
+from .data_collection import DataCollector
+from .duplicate_remover import DuplicateRemover
 from .feature_scaler import FeatureScaler
 from .feature_selector import FeatureSelector
-from .train_test_splitter import TrainTestSplitter, SplitResult
+from .missing_value_handler import MissingValueHandler
+from .train_test_splitter import SplitResult, TrainTestSplitter
 
 
 @dataclass
@@ -64,11 +64,15 @@ class LoanDataPreparationPipeline:
     def feature_engineering(self, df):
         df = df.copy()
         df["total_income"] = df["ApplicantIncome"] + df["CoapplicantIncome"]
-        df["income_loan_ratio"] = df["total_income"] / (df["LoanAmount"].fillna(df["LoanAmount"].median()) + 1)
-        df["loan_per_income"] = df["LoanAmount"].fillna(df["LoanAmount"].median()) / (df["total_income"] + 1)
+        df["income_loan_ratio"] = df["total_income"] / (
+            df["LoanAmount"].fillna(df["LoanAmount"].median()) + 1
+        )
+        df["loan_per_income"] = df["LoanAmount"].fillna(df["LoanAmount"].median()) / (
+            df["total_income"] + 1
+        )
         df["is_high_loan"] = (df["LoanAmount"] > df["LoanAmount"].median()).astype(int)
         return df
-    
+
     def run(self) -> SplitResult:
         """Executes every filter in sequence and returns the train/test split."""
         logger.info("=== Loan Data Preparation Pipeline: START ===")
@@ -101,9 +105,15 @@ class LoanDataPreparationPipeline:
     def save_artifacts(self, output_dir: str) -> None:
         """Persist every fitted filter so other modules/services can reuse them."""
         os.makedirs(output_dir, exist_ok=True)
-        self.missing_value_handler.save(os.path.join(output_dir, "missing_value_handler.joblib"))
-        self.duplicate_remover.save(os.path.join(output_dir, "duplicate_remover.joblib"))
-        self.categorical_encoder.save(os.path.join(output_dir, "categorical_encoder.joblib"))
+        self.missing_value_handler.save(
+            os.path.join(output_dir, "missing_value_handler.joblib")
+        )
+        self.duplicate_remover.save(
+            os.path.join(output_dir, "duplicate_remover.joblib")
+        )
+        self.categorical_encoder.save(
+            os.path.join(output_dir, "categorical_encoder.joblib")
+        )
         self.feature_scaler.save(os.path.join(output_dir, "feature_scaler.joblib"))
         self.feature_selector.save(os.path.join(output_dir, "feature_selector.joblib"))
         logger.info("Pipeline: fitted filter artifacts saved to %s", output_dir)

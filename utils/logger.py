@@ -1,5 +1,7 @@
 import logging
+
 from config import LOG_PATH
+
 
 def get_logger(name):
     logger = logging.getLogger(name)
@@ -7,9 +9,7 @@ def get_logger(name):
 
     if not logger.handlers:
         file_handler = logging.FileHandler(LOG_PATH)
-        formatter = logging.Formatter(
-            "%(asctime)s - %(levelname)s - %(message)s"
-        )
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
 

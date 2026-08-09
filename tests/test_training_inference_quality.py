@@ -1,8 +1,9 @@
 import os
+
 import joblib
 import pandas as pd
 
-from config import MODEL_PATH, FEATURE_PATH, DATA_PATH
+from config import DATA_PATH, FEATURE_PATH, MODEL_PATH
 from predict import LoanPredictionService
 
 

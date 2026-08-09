@@ -9,17 +9,18 @@ Public API:
     from data_pipeline import LoanDataPreparationPipeline, LoanApplication, schema
 """
 
-from . import schema
-from .schema import LoanApplication
-from .pipeline import LoanDataPreparationPipeline
-from .base import PipelineStage
-
 import pandas as pd
+
+from . import schema
+from .base import PipelineStage
+from .pipeline import LoanDataPreparationPipeline
+from .schema import LoanApplication
 
 
 def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     """A lightweight preprocessing helper for tests and quick validation."""
     return df.copy()
+
 
 __all__ = [
     "LoanDataPreparationPipeline",

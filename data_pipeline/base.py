@@ -18,8 +18,9 @@ Each concrete filter:
 
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
 import logging
+from abc import ABC, abstractmethod
+
 import joblib
 import pandas as pd
 

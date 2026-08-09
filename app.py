@@ -25,10 +25,10 @@ Run:
 Open:
     http://127.0.0.1:8000
 """
+
 import logging
 import os
 from datetime import datetime
-from typing import Optional
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
@@ -38,7 +38,6 @@ from pydantic import BaseModel
 
 from predict import LoanPredictionService
 
-
 # --------------------------------------------------------------------
 # FastAPI App
 # --------------------------------------------------------------------
@@ -46,7 +45,7 @@ from predict import LoanPredictionService
 app = FastAPI(
     title="Loan Approval Prediction API",
     description="Predict loan approval using ML model",
-    version="2.0"
+    version="2.0",
 )
 
 # --------------------------------------------------------------------
@@ -75,6 +74,7 @@ logging.basicConfig(
 # Request Schema (VERY IMPORTANT)
 # --------------------------------------------------------------------
 
+
 class LoanRequest(BaseModel):
     loan_id: str
     gender: str
@@ -94,6 +94,7 @@ class LoanRequest(BaseModel):
 # Home
 # --------------------------------------------------------------------
 
+
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
@@ -102,6 +103,7 @@ def home(request: Request):
 # --------------------------------------------------------------------
 # Health Check
 # --------------------------------------------------------------------
+
 
 @app.get("/health")
 def health():
@@ -116,6 +118,7 @@ def health():
 # --------------------------------------------------------------------
 # Prediction Endpoint
 # --------------------------------------------------------------------
+
 
 @app.post("/predict")
 def predict(request: LoanRequest):
@@ -141,17 +144,21 @@ def predict(request: LoanRequest):
     except ValueError as ex:
         raise HTTPException(status_code=400, detail=str(ex))
 
-    except Exception as ex:
+    except Exception:
         logging.exception("Prediction failed")
         raise HTTPException(
-        status_code=500,
-        detail="An internal error occurred while processing the prediction. Please try again.",
-    )
+            status_code=500,
+            detail=(
+                "An internal error occurred while processing the prediction. "
+                "Please try again."
+            ),
+        )
 
 
 # --------------------------------------------------------------------
 # API Info
 # --------------------------------------------------------------------
+
 
 @app.get("/api")
 def api():

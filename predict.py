@@ -31,12 +31,10 @@ from dataclasses import dataclass
 import joblib
 import pandas as pd
 
+from config import BASE_DIR
 from data_pipeline import LoanApplication
 from data_pipeline.base import PipelineStage
 from utils.logger import get_logger
-from config import BASE_DIR
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ARTIFACTS_DIR = os.path.join(BASE_DIR, "output", "artifacts")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
@@ -66,8 +64,10 @@ class LoanPredictionService:
     singleton in the API app) rather than per-request, since loading
     joblib artifacts repeatedly would add unnecessary latency.
     """
-    
-    def __init__(self, artifacts_dir: str = ARTIFACTS_DIR, models_dir: str = MODELS_DIR) -> None:
+
+    def __init__(
+        self, artifacts_dir: str = ARTIFACTS_DIR, models_dir: str = MODELS_DIR
+    ) -> None:
         self.logger = get_logger(__name__)
 
         self.missing_value_handler = PipelineStage.load(
@@ -89,7 +89,9 @@ class LoanPredictionService:
         self.loan_amount_median = stats["loan_amount_median"]
 
         self.model = joblib.load(os.path.join(models_dir, "loan_model.pkl"))
-        self.feature_columns = joblib.load(os.path.join(models_dir, "feature_columns.pkl"))
+        self.feature_columns = joblib.load(
+            os.path.join(models_dir, "feature_columns.pkl")
+        )
 
     def _feature_engineering(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
@@ -101,7 +103,6 @@ class LoanPredictionService:
         df["loan_per_income"] = loan_amount_filled / (df["total_income"] + 1)
         df["is_high_loan"] = (df["LoanAmount"] > self.loan_amount_median).astype(int)
         return df
-    
 
     def _prepare(self, raw_row: pd.DataFrame) -> pd.DataFrame:
         """Runs a single raw application row through the fitted filter chain."""

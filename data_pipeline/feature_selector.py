@@ -18,7 +18,7 @@ same feature vector shape the model was trained on.
 from __future__ import annotations
 
 import pandas as pd
-from sklearn.feature_selection import VarianceThreshold, SelectKBest, f_classif
+from sklearn.feature_selection import SelectKBest, VarianceThreshold, f_classif
 
 from . import schema
 from .base import PipelineStage, logger
@@ -56,7 +56,12 @@ class FeatureSelector(PipelineStage):
         ]
 
         self._is_fitted = True
-        logger.info("%s: selected %d features -> %s", self.name, len(self._selected_columns), self._selected_columns)
+        logger.info(
+            "%s: selected %d features -> %s",
+            self.name,
+            len(self._selected_columns),
+            self._selected_columns,
+        )
         return self._assemble(df)
 
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
